@@ -8,5 +8,5 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://tredshaw.github.io",
   base: "tredshaw.github.io",
-  integrations: [tailwind(), mdx(), sitemap(), icon()],
+  integrations: [tailwind(), mdx(), sitemap(), icon()]
 });
