@@ -7,7 +7,7 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://tredshaw.github.io",
-  base: "/tredshaw.github.io",
+  base: "/",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
   build: {
     assetsPrefix: './',
