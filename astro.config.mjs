@@ -12,8 +12,8 @@ export default defineConfig({
   build: {
     assetsPrefix: './',
   },
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  // vite: {
+  //   plugins: [tailwindcss()],
+  // },
   trailingSlash: "never",
 });
