@@ -4,6 +4,8 @@ import Button from "./ui/button.astro";
 
 <!-- To make this contact form work, create your free access key from https://web3forms.com/
      Then you will get all form submissions in your email inbox. -->
+
+<!--TODO Make form just give submission notification-->
 <form
   action="https://api.web3forms.com/submit"
   method="POST"
@@ -12,6 +14,7 @@ import Button from "./ui/button.astro";
   novalidate>
 
   <input type="hidden" name="access_key" value="d5ec9d82-80a4-4e76-bc5c-00ec6b14a9c8" />
+
   <!-- Create your free access key from https://web3forms.com/ -->
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
 
