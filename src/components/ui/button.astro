@@ -1,29 +1,28 @@
 ---
 interface Props {
-  size?: "md" | "lg";
-  block?: boolean;
-  style?: "outline" | "primary" | "inverted";
-  class?: string;
-  [x: string]: any;
+    size?: "md" | "lg";
+    block?: boolean;
+    style?: "outline" | "primary" | "inverted";
+    class?: string;
+    [x: string]: any;
 }
 
 const {
-  size = "md",
-  style = "primary",
-  block,
-  class: className,
-  ...rest
+    size = "md",
+    style = "primary",
+    block,
+    class: className,
+    ...rest
 } = Astro.props;
 
 const sizes = {
-  md: "px-5 py-2.5 ",
-  lg: "px-6 py-3 rounded-3xl",
+    md: "px-5 py-2.5 ",
+    lg: "px-6 py-3 rounded-3xl",
 };
 
 const styles = {
-  outline: "border-2 border-black hover:bg-primary_dark text-black hover:text-white",
-  primary:
-    "bg-primary text-white hover:bg-secondary border-2 border-transparent",
+    outline: "border-2 border-black hover:bg-primary_dark text-black hover:text-white",
+    primary: "bg-primary text-white hover:bg-secondary border-2 border-transparent",
 };
 ---
 
