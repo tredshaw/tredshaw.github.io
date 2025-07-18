@@ -1,0 +1,90 @@
+---
+import { Picture } from "astro:assets";
+import heroImage from "assets/hero.png";
+import Link from "@components/ui/link.astro";
+import Button from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import ContactForm from "@components/contactform.astro";
+
+---
+
+<main class="grid md:grid-cols-2 pt-8 pb-8 md:pt-12 md:pb-16">
+
+  <!--Image-->
+
+  <!--Title-->
+
+  <!--Content-between spreads divs them vertically within this div-->
+  <div class="grid content-between">
+
+    <!-- STRAPLINE 1-->
+    <!--<h1-->
+    <!--  class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-primary">-->
+    <!--  Helping anxious swimmers train like <em>Olympians</em>.-->
+    <!--</h1>-->
+
+    <div class="">
+      <h1
+        class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-primary">
+        Find your <em>flow</em>.
+      </h1>
+
+      <p class="text-lg text-text max-w-xl mt-8">
+        The intelligent swim app for <span class="text-accent font-bold">anxious beginners.</span>
+        Aided by <span class="text-accent font-bold">biomedical engineering expertise</span>.
+      </p>
+    </div>
+
+    <!--justify-center aligns items horizontally in the div-->
+    <div class="flex align-middle justify-center px-8 py-12">
+      <img class=" max-h-44" src="/src/assets/hero_swimmer.png" alt="image description">
+    </div>
+
+    <!--Buttons-->
+    <!--<div class="mt-6 flex flex-col sm:flex-row gap-3 text-text">-->
+    <!--  <Link-->
+    <!--    href="#"-->
+    <!--    href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"-->
+    <!--    target="_blank"-->
+    <!--    class="flex gap-1 items-center justify-center"-->
+    <!--    rel="noopener">-->
+    <!--    <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />-->
+    <!--    Download for Free-->
+    <!--  </Link>-->
+
+    <!--  <Link-->
+    <!--    size="lg"-->
+    <!--    style="outline-style"-->
+    <!--    rel="noopener"-->
+    <!--    href="https://github.com/surjithctly/astroship"-->
+    <!--    class="flex gap-1 items-center justify-center"-->
+    <!--    target="_blank">-->
+    <!--    <Icon class="text-black w-4 h-4" name="bx:bxl-github" />-->
+    <!--     GitHub Repo-->
+    <!--  </Link>-->
+    <!--</div>-->
+
+  </div>
+
+  <div class="hidden content-center pt-16 md:py-4 md:grid">
+    <div class="pb-4 pl-16">
+      <h3
+          class="text-2xl lg:text-3xl xl:text-4xl font-bold lg:tracking-tight xl:tracking-tighter text-primary">
+        Start swimming calmly
+      </h3>
+      <p class="text-lg mt-4 mb-4 lg:mb-6 text-text max-w-xl">
+        Join us today to help change the world of swimming and create the app that you want!
+      </p>
+    </div>
+    <ContactForm />
+    <!--<Picture-->
+    <!--  src={heroImage}-->
+    <!--  alt="Astronaut in the air"-->
+    <!--  widths={[200, 400, 600]}-->
+    <!--  sizes="(max-width: 800px) 100vw, 620px"-->
+    <!--  loading="eager"-->
+    <!--  format="avif"-->
+    <!--/>-->
+  </div>
+
+</main>
