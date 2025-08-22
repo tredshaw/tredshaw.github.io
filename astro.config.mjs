@@ -10,10 +10,13 @@ export default defineConfig({
   base: "/",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
   build: {
+    // Should be './' but GitHub pages can have issues with that
     assetsPrefix: '',
   },
   // vite: {
   //   plugins: [tailwindcss()],
   // },
+
+  // GitHub pages always has a trailing slash - can remove if i change host to 'never'
   trailingSlash: "always",
 });
