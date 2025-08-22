@@ -15,5 +15,5 @@ export default defineConfig({
   // vite: {
   //   plugins: [tailwindcss()],
   // },
-  trailingSlash: "never",
+  trailingSlash: "always",
 });
