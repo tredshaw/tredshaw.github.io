@@ -5,10 +5,10 @@ import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
-  // {
-  //   title: "Home",
-  //   path: "/",
-  // },
+  {
+    title: "Home",
+    path: "/",
+  },
   // {
   //   title: "Features",
   //   path: "#",
@@ -23,10 +23,10 @@ const menuitems = [
   //   title: "Pricing",
   //   path: "/pricing",
   // },
-  // {
-  //   title: "About",
-  //   path: "/about",
-  // },
+  {
+    title: "About",
+    path: "/about",
+  },
   // // {
   //   title: "Blog",
   //   path: "/blog",
@@ -44,18 +44,21 @@ const menuitems = [
 
       <Astronav>
         <div class="flex w-full lg:w-auto items-center justify-between ">
+
           <a href="/" class="">
+
             <div class="flex">
               <img src="/logo.png" alt="eddy logo" class="h-12 w-auto mr-4" />
-              <span class="font-light text-4xl text-white">eddy</span>
+              <span class="font-light text-4xl text-white">Eddy</span>
             </div>
+
           </a>
 
           <!--The dropdown for when it gets small-->
-        <!--  <div class="block lg:hidden">-->
-        <!--    <MenuIcon class="w-4 h-4 text-gray-800" />-->
-        <!--  </div>-->
-        <!--</div>-->
+          <div class="block lg:hidden">
+            <MenuIcon class="w-4 h-4 text-white" />
+          </div>
+        </div>
 
         <!--lg:flex makes it visible at that breakpoint but hidden before-->
         <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
@@ -75,7 +78,7 @@ const menuitems = [
                     <li>
                       <a
                         href={item.path}
-                        class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                        class="flex lg:px-3 py-2 items-center text-white hover:text-base_dark">
                         <span> {item.title}</span>
                         {item.badge && (
                           <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">

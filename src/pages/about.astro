@@ -1,57 +1,96 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
-import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import Layout from "@layouts/Layout.astro";
+import HomeAboutFounder from "../components/home_about_founder.astro";
+import HomeTestimonials from "../components/home_testimonials.astro";
 
-// Filter team entries with 'draft: false' & date before current date
-const publishedTeamMembers = await getCollection("team", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
-});
 ---
 
-<Layout title="About">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc">We are a small passionate team.</Fragment>
-    </Sectionhead>
+<Layout title="eddy">
+    <Container>
+        <main class="py-8">
+            <div class="mx-auto pt-6 pb-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
 
-    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl text-gray-800">
-        Empowering the world with Astro.
-      </h2>
-      <p class="text-lg leading-relaxed text-slate-500">
-        We're a multi-cultural team from around the world! We come from diverse
-        backgrounds, bringing different personalities, experiences and skills to
-        the job. This is what makes our team so special.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-      {
-        publishedTeamMembers.map((teamMemberEntry) => (
-          <div class="group">
-            <div class="w-full aspect-square">
-              <Picture
-                src={teamMemberEntry.data.avatar.src}
-                alt={teamMemberEntry.data.avatar.alt}
-                sizes="(max-width: 800px) 100vw, 400px"
-                width={400}
-                height={400}
-                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-              />
+                    <!-- Left Column: About Eddy -->
+                    <div>
+                        <!-- About Eddy Intro -->
+                        <div class="mb-16 text-center lg:text-left">
+                            <h2 class="text-4xl lg:text-4xl xl:text-5xl font-bold text-primary_dark mb-8">
+                                About Eddy
+                            </h2>
+                            <p class="text-lg text-text max-w-2xl mx-auto lg:mx-0">
+                                Eddy isn’t just an app — it’s a movement to make swimming more accessible, enjoyable,
+                                and empowering for everyone. Whether you’re diving in for the first time or chasing
+                                podiums, Eddy gives you the guidance, structure, and confidence to thrive in the water.
+                            </p>
+                        </div>
+
+                        <!-- Vision & Mission side by side -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Vision -->
+                            <div>
+                                <h3 class="text-2xl lg:text-2xl xl:text-3xl font-bold text-secondary_dark mb-2">Our Vision</h3>
+                                <p class="text-text leading-relaxed">
+                                    To create a world where swimming feels natural, uplifting, and accessible to all —
+                                    from anxious beginners to elite athletes — by combining human expertise, smart
+                                    technology, and a supportive community.
+                                </p>
+                            </div>
+
+                            <!-- Mission -->
+                            <div>
+                                <h3 class="text-2xl lg:text-2xl xl:text-3xl font-bold text-accent mb-2">Our Mission</h3>
+                                <p class="text-text leading-relaxed">
+                                    To empower swimmers through personalized plans, expert guidance, and wellbeing-first
+                                    support, so that every journey in the pool builds confidence, connection, and joy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Supporting Image -->
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <img
+                                    src="pool_selfie.png"
+                                    alt="About Eddy - Swimming for everyone"
+                                    class="w-full max-w-sm rounded-2xl shadow-lg"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-4 text-center">
-              <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
-              <h3 class="text-sm text-slate-500">
-                {teamMemberEntry.data.title}
-              </h3>
+            <!-- Founder Section -->
+            <div class="py-16 rounded-2xl bg-white max-w-6xl mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- Left Column: Founder Image -->
+                    <div class="flex justify-center ">
+                        <img
+                                src="/founder.png"
+                                alt="Founder of Eddy"
+                                class="w-80 h-80 object-cover rounded-2xl shadow-lg"
+                        />
+                    </div>
+
+                    <!-- Right Column: Founder Info -->
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Toby Redshaw</h3>
+                        <p class="text-lg text-gray-600 mb-4">Founder of Eddy</p>
+                        <p class="text-text leading-relaxed max-w-xl mx-auto lg:mx-0">
+                            Toby has spent most of his life in and around the water. As a former long-distance swimmer, he knows both the joy of swimming and the challenges that come with it — including stepping away from competition after shoulder nerve issues. That experience, combined with his curiosity, led him to study Biomedical Engineering at Imperial College London.
+                            <br/><br/>
+                            There, he explored biomechanics, fluid dynamics, and how the body moves through water — alongside machine learning and neuroscience. His master’s thesis focused on keeping patient data safe while improving medical AI, a project that taught him how to combine cutting-edge technology with real care for people.
+                            <br/><br/>
+                            Now, Toby is bringing that same mix of swimming experience, biomechanics expertise, and data safety awareness into Eddy. His goal? To make swimming feel easier, safer, and more enjoyable for everyone — especially anxious beginners who just need a little extra confidence to dive in.
+                        </p>
+
+                    </div>
+                </div>
             </div>
-          </div>
-        ))
-      }
-    </div>
-  </Container>
+        </main>
+    </Container>
 </Layout>
+

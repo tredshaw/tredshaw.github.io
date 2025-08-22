@@ -1,0 +1,178 @@
+---
+const testimonials = [
+    {
+        id: 1,
+        name: "Cecilia R.",
+        role: "Beginner Triathlete",
+        quote: "The sessions produced by the swim plan generator have been brilliant in giving me the confidence to " +
+            "learn to swim for my half-Ironman next year. Even though I have been using the Beta version, I can " +
+            "already see the value this will bring to anxious beginners.",
+        image: "/images/testimonial-1.jpg"
+    },
+    {
+        id: 2,
+        name: "You!",
+        role: "App Tester",
+        quote: "If you would like to be part of the team who tests the initial versions of the app, sign-up and " +
+            "reach out to us today!",
+        image: "/images/testimonial-2.jpg"
+    },
+    // {
+    //     id: 3,
+    //     name: "David Chen",
+    //     role: "Adult Beginner",
+    //     quote: "I was terrified of water my whole life. With Eddy's guidance, I completed my first 1000m swim last week!",
+    //     image: "/images/testimonial-3.jpg"
+    // },
+    // {
+    //     id: 4,
+    //     name: "Emma Rodriguez",
+    //     role: "Competitive Swimmer",
+    //     quote: "The AI-powered training plans helped me break my personal record by 15 seconds. It's like having a coach in your pocket.",
+    //     image: "/images/testimonial-4.jpg"
+    // },
+    // {
+    //     id: 5,
+    //     name: "James Wilson",
+    //     role: "Triathlete",
+    //     quote: "Swimming was my weakest discipline. Eddy's structured approach turned it into my strongest leg of the race.",
+    //     image: "/images/testimonial-5.jpg"
+    // }
+];
+---
+
+<main>
+    <div class="py-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column: heading + body + carousel -->
+            <div>
+                <!-- Heading + Body -->
+                <div class="mb-12 text-center lg:text-left">
+                    <h2 class="text-4xl lg:text-4xl xl:text-5xl font-bold text-primary_dark mb-8">
+                        What our swimmers say
+                    </h2>
+                    <p class="text-lg text-text max-w-2xl mx-auto lg:mx-0">
+                        From beginners to professional swimmers, discover how Eddy is transforming
+                        the way people learn to swim.
+                    </p>
+                </div>
+
+                <!-- Carousel -->
+                <div class="relative w-full max-w-2xl mx-auto lg:mx-0">
+                    <!-- Carousel Container -->
+                    <div class="overflow-hidden rounded-2xl">
+                        <div class="testimonial-carousel flex transition-transform duration-1000 ease-in-out">
+                            {testimonials.map((testimonial, index) => (
+                                    <div class="testimonial-card w-full flex-shrink-0 bg-primary p-8 text-white content-center">
+                                        <div class="text-center">
+
+                                            <blockquote class="text-md font-light mb-6 italic">
+                                                "{testimonial.quote}"
+                                            </blockquote>
+
+                                            <div>
+                                                <p class="text-lg text-white font-semibold">
+                                                    {testimonial.name}
+                                                </p>
+                                                <p class="text-white">{testimonial.role}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows (position relative to carousel) -->
+                    <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 text-secondary rounded-full p-2 transition-all duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+
+                    <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 text-secondary rounded-full p-2 transition-all duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                    <!-- Indicators -->
+                    <div class="flex justify-center mt-4 space-x-2">
+                        {testimonials.map((_, index) => (
+                                <button
+                                        class={`carousel-indicator w-3 h-3 rounded-full transition-all duration-200 ${
+                                            index === 0 ? "bg-primary_dark" : "bg-gray-300"
+                                        }`}
+                                ></button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Image -->
+            <div class="flex justify-center">
+                <div class="relative">
+                    <img
+                            src="/your_week.png"
+                            alt="Eddy Swimming App Interface"
+                            class="w-full max-w-sm h-auto"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.querySelector('.testimonial-carousel');
+        const cards = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+
+        let currentIndex = 0;
+        const totalCards = cards.length;
+
+        function updateCarousel() {
+            const translateX = -currentIndex * 100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('bg-primary_dark');
+                    indicator.classList.remove('bg-gray-300');
+                } else {
+                    indicator.classList.add('bg-gray-300');
+                    indicator.classList.remove('bg-primary_dark');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Indicator clicks
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto-play (optional)
+        setInterval(nextSlide, 5000);
+    });
+</script>

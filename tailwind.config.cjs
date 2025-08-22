@@ -40,8 +40,8 @@ module.exports = {
       },
 
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif', 'tracking-wide'],
+        // heading: ['Inter', 'sans-serif'],
         // heading: ['Circular Std', 'sans-serif'],
       },
     },
