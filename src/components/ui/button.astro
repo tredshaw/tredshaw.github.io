@@ -2,7 +2,7 @@
 interface Props {
     size?: "md" | "lg";
     block?: boolean;
-    style?: "outline" | "primary" | "inverted";
+    style?: "outline" | "primary" | "secondary" | "inverted";
     class?: string;
     [x: string]: any;
 }
@@ -21,8 +21,10 @@ const sizes = {
 };
 
 const styles = {
-    outline: "border-2 border-black hover:bg-primary_dark text-black hover:text-white",
-    primary: "bg-primary text-white hover:bg-secondary border-2 border-transparent",
+    outline: "border-2 font-bold border-black hover:bg-primary_dark text-black hover:text-white",
+    primary: "bg-primary font-bold text-white hover:bg-secondary border-2 border-transparent",
+    secondary: "bg-secondary font-bold text-text hover:bg-acccent border-2 border-transparent",
+
 };
 ---
 
