@@ -10,7 +10,7 @@ export default defineConfig({
   base: "/",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
   build: {
-    assetsPrefix: './',
+    assetsPrefix: '',
   },
   // vite: {
   //   plugins: [tailwindcss()],
