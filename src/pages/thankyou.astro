@@ -8,28 +8,17 @@ import LowerContact from "@components/lower_contact.astro";
 // import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
 import ContactForm from "@components/contactform.astro";
-import HomeTestimonials from "../components/home_testimonials.astro";
-import HomeAboutFounder from "../components/home_about_founder.astro";
+import HomeTestimonials from "../components/home_content/home_testimonials.astro";
+import HomeAboutFounder from "../components/home_content/home_about_founder.astro";
 ---
 
 <Layout title="eddy">
-
-  <div class="w-full bg-primary">
-    <HeroThankYou />
-  </div>
-
   <Container>
-    <Problem />
-    <HomeTestimonials />
-    <!--<Features />-->
-    <!--<Logos />-->
-    <!--<Cta />-->
-    <!--<ContactForm />-->
-    <!--<LowerContact />-->
+    <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
+      <div class="flex flex-col px-16 justify-center items-center h-64 rounded-3xl bg-eddy_green max-w-xl text-center">
+        <div class="font-bold text-xl text-text">Thank you for your submission!</div>
+        <div class="text-sm text-text">We'll reach out to you soon with some exciting information.</div>
+      </div>
+    </div>
   </Container>
-
-  <div class="w-full bg-base_dark">
-    <HomeAboutFounder />
-  </div>
-
 </Layout>
