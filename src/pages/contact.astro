@@ -1,0 +1,95 @@
+---
+import Contactform from "@components/contactform.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Contact">
+
+  <div class="mx-auto px-5 py-12 bg-primary">
+    <div class="text-center">
+      <div class="text-4xl lg:text-4xl xl:text-5xl font-bold text-white">
+        Join us today!
+      </div>
+      <div class="text-lg leading-relaxed text-white pt-4">
+        Contact us through any socials, or join the waitlist below.
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+      <div>
+        <h2 class="text-3xl font-bold text-white">Contact Eddy</h2>
+        <p class="text-lg leading-relaxed text-white mt-3">
+          Got a question? A story? Just want to say hi? We’d love to hear from you.
+        </p>
+        <div class="mt-5">
+          <div class="flex items-center mt-2 space-x-2 text-white">
+            <Icon class="text-accent w-4 h-4" name="uil:map-marker" />
+            <span>Based in London, swimming everywhere.</span>
+          </div>
+          <div class="flex items-center mt-2 space-x-2 text-white">
+            <Icon class="text-accent w-4 h-4" name="uil:envelope" />
+            <a href="mailto:swimwitheddy@gmail.com">swimwitheddy@gmail.com</a>
+          </div>
+          <div class="flex items-center mt-2 space-x-2 text-white">
+            <Icon class="text-accent w-4 h-4" name="uil:instagram" />
+            <a href="https://instagram.com/swimwitheddy" target="_blank" rel="noopener noreferrer">@swimwitheddy</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <Contactform />
+      </div>
+    </div>
+  </div>
+
+
+  <Container>
+
+
+    <!-- FAQ Section -->
+    <div class="mt-12 mb-24">
+      <h2 class="text-3xl font-bold text-center text-primary_dark">FAQs</h2>
+      <p class="text-center text-slate-500 mt-3">
+        Answers to the most common questions about Eddy.
+      </p>
+
+      <!-- FAQ Items -->
+      <div class="grid md:grid-cols-3 gap-10 mt-12">
+
+        <div class="bg-white rounded-3xl p-6">
+          <h3 class="font-semibold text-lg text-primary">What is Eddy?</h3>
+          <p class="text-slate-600 mt-2 text-md">
+            Eddy aims to increase your confidence in water and to help you swim more efficiently.
+            We focus on correct technique first, believing that it will help people feel more calm in the water,
+            and can potentially save lives.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6">
+          <h3 class="font-semibold text-lg text-primary">Who is it for?</h3>
+          <p class="text-slate-600 mt-2 text-md">
+            Whether you’re an anxious swimmer, beginner, or a triathlete — Eddy is built for you.
+            We want everyone to be able to swim, and it is never too late to learn.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6">
+          <h3 class="font-semibold text-lg text-primary">How do I join?</h3>
+          <p class="text-slate-600 mt-2 text-md">
+            Sign up for our waitlist today and be the first to get access when
+            Eddy launches. We'll keep you updated with all the news and
+            development progress on our socials so be sure to follow there.
+            <span class="font-bold text-accent">
+              Keep an eye on your inbox to be part of the lucky few who can test the first versions of the swim session planner!
+            </span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </Container>
+</Layout>
