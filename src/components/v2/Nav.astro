@@ -2,38 +2,26 @@
 // Nav.astro — v2 navigation
 ---
 
-<nav id="v2-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+<nav id="v2-nav">
+  <div class="nav-inner wrap">
     <!-- Brand -->
-    <a href="/" class="flex items-center gap-2 text-white font-semibold text-lg">
-      <img src="/logo.png" alt="Eddy spiral mark" class="h-8 w-8 object-contain" />
-      <span class="font-display">Eddy</span>
+    <a href="/" class="brand">
+      <img src="/logo.png" alt="Eddy" />
+      Eddy
     </a>
 
     <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-6 text-white/90 text-sm font-medium">
-      <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
-      <li><a href="#pillars" class="hover:text-white transition-colors">Pillars</a></li>
-      <li><a href="#app-preview" class="hover:text-white transition-colors">The app</a></li>
-      <li><a href="#testimonials" class="hover:text-white transition-colors">Stories</a></li>
+    <ul class="nav-links">
+      <li><a href="/about/">About</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#app-preview">The app</a></li>
+      <li><a href="#testimonials">Stories</a></li>
     </ul>
 
-    <!-- CTA + mobile toggle -->
-    <div class="flex items-center gap-3">
-      <a
-        href="#email-capture"
-        class="hidden md:inline-flex items-center px-4 py-2 rounded-pill bg-white text-primary font-semibold text-sm hover:bg-white/90 transition-colors"
-      >
-        Start swimming calmly
-      </a>
-      <!-- Hamburger -->
-      <button
-        id="v2-nav-toggle"
-        aria-label="Open menu"
-        aria-expanded="false"
-        class="md:hidden text-white p-1"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <div class="nav-right">
+      <a href="#email-capture" class="btn-nav">Start swimming calmly</a>
+      <button id="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" class="hamb">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
@@ -43,53 +31,146 @@
   </div>
 
   <!-- Mobile menu -->
-  <div
-    id="v2-mobile-menu"
-    class="hidden md:hidden bg-primary/95 backdrop-blur-sm border-t border-white/10"
-  >
-    <ul class="flex flex-col px-4 py-4 gap-4 text-white text-base font-medium">
-      <li><a href="/about/" class="block hover:text-aqua transition-colors">About</a></li>
-      <li><a href="#pillars" class="block hover:text-aqua transition-colors">Pillars</a></li>
-      <li><a href="#app-preview" class="block hover:text-aqua transition-colors">The app</a></li>
-      <li><a href="#testimonials" class="block hover:text-aqua transition-colors">Stories</a></li>
-      <li>
-        <a
-          href="#email-capture"
-          class="inline-flex items-center px-4 py-2 rounded-pill bg-white text-primary font-semibold text-sm"
-        >
-          Start swimming calmly
-        </a>
-      </li>
-    </ul>
+  <div id="v2-mobile-menu" class="mobile-menu hidden">
+    <a href="/about/">About</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#app-preview">The app</a>
+    <a href="#testimonials">Stories</a>
+    <a href="#email-capture" class="btn-nav mobile-cta">Start swimming calmly</a>
   </div>
 </nav>
 
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, #FAF6F0 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 300ms ease, background 300ms ease;
+  }
+  nav.scrolled {
+    border-color: #EADFCF;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #16201F;
+  }
+  .brand img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #42585C;
+    transition: color 200ms ease;
+  }
+  .nav-links a:hover { color: #105F80; }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-nav {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 22px;
+    border-radius: 9999px;
+    background: #105F80;
+    color: #fff;
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 200ms ease, box-shadow 200ms ease;
+    white-space: nowrap;
+  }
+  .btn-nav:hover {
+    background: #07425B;
+    box-shadow: 0 4px 14px rgba(16,95,128,0.3);
+  }
+  .hamb {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: #16201F;
+  }
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 28px 20px;
+    border-top: 1px solid #EADFCF;
+    background: #FAF6F0;
+  }
+  .mobile-menu a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #42585C;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EBE3;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-cta {
+    margin-top: 8px;
+    text-align: center;
+    border-bottom: none !important;
+  }
+  .hidden { display: none !important; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .btn-nav:not(.mobile-cta) { display: none; }
+    .hamb { display: block; }
+  }
+</style>
+
 <script is:inline>
   (function () {
-    const nav = document.getElementById('v2-nav');
-    const toggle = document.getElementById('v2-nav-toggle');
-    const menu = document.getElementById('v2-mobile-menu');
+    var nav = document.getElementById('v2-nav');
+    var toggle = document.getElementById('v2-nav-toggle');
+    var menu = document.getElementById('v2-mobile-menu');
 
-    // Scroll behaviour
     window.addEventListener('scroll', function () {
-      if (window.scrollY > 20) {
-        nav.classList.add('scrolled');
-        nav.style.backgroundColor = 'rgba(16, 95, 128, 0.85)';
-        nav.style.backdropFilter = 'blur(12px)';
-      } else {
-        nav.classList.remove('scrolled');
-        nav.style.backgroundColor = '';
-        nav.style.backdropFilter = '';
-      }
+      nav.classList.toggle('scrolled', window.scrollY > 8);
     }, { passive: true });
 
-    // Mobile toggle
     toggle.addEventListener('click', function () {
-      const isOpen = menu.classList.toggle('hidden') === false;
-      toggle.setAttribute('aria-expanded', String(isOpen));
+      var open = menu.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', String(open));
     });
 
-    // Close mobile menu on anchor link click
     menu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         menu.classList.add('hidden');

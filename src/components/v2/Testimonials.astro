@@ -1,103 +1,140 @@
 ---
-// Testimonials.astro — v2 testimonials carousel
-const testimonials = [
-  {
-    quote: "I hadn't put my face in the water for thirty years. Eddy got me there in three weeks — calmly.",
-    name: "Priya",
-    detail: "Learned to swim at 41",
-  },
-  {
-    quote: "It never once made me feel silly for being scared. That's why it worked.",
-    name: "Marcus",
-    detail: "Open-water beginner",
-  },
-  {
-    quote: "The confidence tracker is the first time I've seen my own progress. I cried, a little.",
-    name: "Janette",
-    detail: "Returning swimmer",
-  },
+// Testimonials.astro — v2 testimonials
+const quotes = [
+  { q: "I hadn't put my face in the water for thirty years. Eddy got me there in three weeks — calmly.", who: "Priya", role: "Learned to swim at 41" },
+  { q: "It never once made me feel silly for being scared. That's why it worked.", who: "Marcus", role: "Open-water beginner" },
+  { q: "The confidence tracker is the first time I've seen my own progress. I cried, a little.", who: "Janette", role: "Returning swimmer" },
 ];
 ---
 
-<section id="testimonials" class="bg-primary py-16 sm:py-24">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-aqua mb-4">
-      What our swimmers say
-    </p>
-    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-white mb-12">
-      Quietly life-changing.
-    </h2>
-
-    <!-- Testimonial slides -->
-    <div id="testimonials-track" class="relative min-h-[200px]">
-      {testimonials.map((t, i) => (
-        <div
-          class="testimonial-slide"
-          data-index={i}
-          aria-hidden={i !== 0 ? "true" : "false"}
-        >
-          <blockquote class="text-white/90 text-xl sm:text-2xl font-display italic leading-relaxed mb-6">
-            "{t.quote}"
-          </blockquote>
-          <p class="text-aqua font-semibold">{t.name}</p>
-          <p class="text-white/60 text-sm mt-1">{t.detail}</p>
-        </div>
-      ))}
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What our swimmers say</span>
+      <h2>Quietly life-changing.</h2>
     </div>
 
-    <!-- Dot navigation -->
-    <div class="flex justify-center gap-3 mt-10" role="tablist" aria-label="Testimonial navigation">
-      {testimonials.map((_, i) => (
-        <button
-          class="testimonial-dot h-2.5 w-2.5 rounded-full bg-white/30 transition-colors duration-300"
-          data-target={i}
-          role="tab"
-          aria-selected={i === 0 ? "true" : "false"}
-          aria-label={`Testimonial ${i + 1}`}
-        ></button>
+    <div class="quote-card">
+      {quotes.map((t, i) => (
+        <div class="slide" data-index={i} aria-hidden={i !== 0 ? "true" : "false"}>
+          <blockquote class="q">&ldquo;{t.q}&rdquo;</blockquote>
+          <p class="who"><b>{t.who}</b> · {t.role}</p>
+        </div>
       ))}
+      <div class="dots">
+        {quotes.map((_, i) => (
+          <button class="dot" data-target={i} aria-label={`Story ${i + 1}`} aria-selected={i === 0 ? "true" : "false"} />
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Without JS, all slides are visible (stacked). JS hides all but the active one. */
-  .testimonial-slide {
+  section {
+    padding: 92px 0;
+    background: #FAF6F0;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .sec-head {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .eyebrow {
     display: block;
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #105F80;
+    margin-bottom: 14px;
   }
-  .testimonial-slide.is-hidden {
-    display: none;
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.02em;
+    color: #16201F;
+    margin: 0;
   }
-  .testimonial-dot.is-active {
-    background-color: #30E6F8; /* --color-aqua */
+  .quote-card {
+    background: #fff;
+    border: 1px solid #EADFCF;
+    border-radius: 24px;
+    padding: 52px 56px;
+    box-shadow: 0 4px 20px rgba(16,95,128,0.08);
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .slide { display: block; }
+  .slide.is-hidden { display: none; }
+  .q {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: #16201F;
+    margin: 0 0 22px;
+  }
+  .who {
+    font-size: 15px;
+    color: #6B8085;
+    margin: 0;
+  }
+  .who b {
+    color: #16201F;
+    font-weight: 600;
+  }
+  .dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    border: none;
+    background: #DECFBA;
+    cursor: pointer;
+    padding: 0;
+    transition: all 280ms cubic-bezier(.22,.61,.36,1);
+  }
+  .dot.is-active {
+    background: #105F80;
+    width: 24px;
+  }
+  @media (max-width: 640px) {
+    .quote-card { padding: 36px 24px; }
   }
 </style>
 
 <script is:inline>
   (function () {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.testimonial-dot');
+    var slides = document.querySelectorAll('.slide');
+    var dots = document.querySelectorAll('.dot');
     if (!slides.length) return;
-
-    function goTo(index) {
-      slides.forEach(function (slide, i) {
-        const active = i === index;
-        slide.classList.toggle('is-hidden', !active);
-        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    function goTo(n) {
+      slides.forEach(function (s, i) {
+        s.classList.toggle('is-hidden', i !== n);
+        s.setAttribute('aria-hidden', i !== n ? 'true' : 'false');
       });
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle('is-active', i === index);
-        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === n);
+        d.setAttribute('aria-selected', i === n ? 'true' : 'false');
       });
     }
-
-    // Initialise — hide all but first
     goTo(0);
-
-    dots.forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        goTo(parseInt(dot.dataset.target, 10));
-      });
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () { goTo(parseInt(d.dataset.target, 10)); });
     });
   })();
 </script>

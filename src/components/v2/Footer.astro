@@ -1,65 +1,105 @@
 ---
 // Footer.astro — v2 footer
 const year = new Date().getFullYear();
-
-const links = {
-  Product: [
-    { label: "Features", href: "#pillars" },
-    { label: "The app", href: "#app-preview" },
-    { label: "For coaches", href: "#" },
-  ],
-  Company: [
-    { label: "About", href: "/about/" },
-    { label: "Our method", href: "#" },
-    { label: "Contact", href: "/contact/" },
-  ],
-  Support: [
-    { label: "Help centre", href: "#" },
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
-  ],
-};
+const cols = [
+  { heading: "Product", items: [{ label: "Features", href: "#pillars" }, { label: "The app", href: "#app-preview" }, { label: "For coaches", href: "#" }] },
+  { heading: "Company", items: [{ label: "About", href: "/about/" }, { label: "Our method", href: "#" }, { label: "Contact", href: "/contact/" }] },
+  { heading: "Support", items: [{ label: "Help centre", href: "#" }, { label: "Privacy", href: "#" }, { label: "Terms", href: "#" }] },
+];
 ---
 
-<footer class="bg-primary-dark text-white py-12 sm:py-16">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-      <!-- Brand -->
-      <div class="sm:col-span-2 lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
-          <img src="/logo.png" alt="Eddy spiral mark" class="h-8 w-8 object-contain" />
-          <span class="font-display font-semibold text-lg">Eddy</span>
-        </a>
-        <p class="text-white/60 text-sm leading-relaxed max-w-xs">
-          The intelligent swim app for anxious beginners. From panic to peace, one swim at a time.
-        </p>
-      </div>
-
-      <!-- Link columns -->
-      {Object.entries(links).map(([heading, items]) => (
-        <div>
-          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
-            {heading}
-          </h3>
-          <ul class="flex flex-col gap-2">
-            {items.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="text-white/70 text-sm hover:text-white transition-colors"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a href="/" class="brand">
+        <img src="/logo.png" alt="Eddy" />
+        Eddy
+      </a>
+      <p>The intelligent swim app for anxious beginners. From panic to peace, one swim at a time.</p>
+    </div>
+    <div class="foot-cols">
+      {cols.map((col) => (
+        <div class="foot-col">
+          <h5>{col.heading}</h5>
+          {col.items.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
         </div>
       ))}
     </div>
-
-    <!-- Copyright -->
-    <div class="border-t border-white/10 pt-6 text-white/40 text-xs text-center sm:text-left">
-      &copy; {year} Eddy &middot; London, United Kingdom &middot; swimwitheddy@gmail.com
-    </div>
+  </div>
+  <div class="wrap foot-base">
+    &copy; {year} Eddy &middot; London, United Kingdom &middot; swimwitheddy@gmail.com
   </div>
 </footer>
+
+<style>
+  footer {
+    padding: 60px 0 40px;
+    border-top: 1px solid #EADFCF;
+    background: #FAF6F0;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .foot-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .foot-brand { max-width: 260px; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: #16201F;
+    margin-bottom: 14px;
+  }
+  .brand img { width: 28px; height: 28px; object-fit: contain; }
+  .foot-brand p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #6B8085;
+    margin: 0;
+  }
+  .foot-cols {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .foot-col h5 {
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6B8085;
+    margin: 0 0 14px;
+  }
+  .foot-col a {
+    display: block;
+    font-size: 14px;
+    color: #42585C;
+    margin-bottom: 10px;
+    transition: color 200ms ease;
+  }
+  .foot-col a:hover { color: #105F80; }
+  .foot-base {
+    margin-top: 44px;
+    padding-top: 20px;
+    border-top: 1px solid #EADFCF;
+    font-size: 13px;
+    color: #6B8085;
+  }
+  @media (max-width: 640px) {
+    .foot-grid { flex-direction: column; }
+    .foot-cols { gap: 32px; }
+  }
+</style>

@@ -1,7 +1,5 @@
 ---
 import { SEO } from "astro-seo";
-import ThemeSwitcher from "@components/ThemeSwitcher.astro";
-import "@fontsource-variable/inter/index.css";
 import "../styles/themes.css";
 
 export interface Props {
@@ -18,24 +16,18 @@ const { title, description = "Eddy removes the anxiety from swimming." } = Astro
 <!DOCTYPE html>
 <html lang="en" data-theme="eddy-v2">
   <head>
-    <script is:inline>
-      (function() {
-        var saved = localStorage.getItem('eddy-theme');
-        if (saved) document.documentElement.setAttribute('data-theme', saved);
-      })();
-    </script>
     <title>{title}</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- v2 fonts — Source Serif 4 + Figtree via Google Fonts CDN -->
+    <!-- v2 fonts — Source Serif 4 + Figtree -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=Figtree:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Figtree:wght@400;500;600;700&display=swap"
     />
 
     <SEO
@@ -61,12 +53,22 @@ const { title, description = "Eddy removes the anxiety from swimming." } = Astro
     />
   </head>
 
-  <body class="bg-base">
+  <body>
     <slot />
-    <ThemeSwitcher />
     <style is:global>
-      img {
-        content-visibility: auto;
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: #FAF6F0;
+        color: #16201F;
+        font-family: 'Figtree', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Source Serif 4', Georgia, serif;
       }
     </style>
   </body>

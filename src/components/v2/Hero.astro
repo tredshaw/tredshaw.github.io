@@ -2,50 +2,149 @@
 // Hero.astro — v2 hero section
 ---
 
-<section class="relative bg-primary min-h-screen flex items-center overflow-hidden pt-16">
-  <!-- Aqua disc glow behind swimmer -->
-  <div
-    aria-hidden="true"
-    class="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full"
-    style="background: radial-gradient(circle, rgba(48,230,248,0.25) 0%, rgba(48,230,248,0) 70%);"
-  ></div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-16">
+<header class="hero">
+  <div class="wrap hero-grid">
     <!-- Copy -->
-    <div class="text-white">
-      <p class="text-sm font-semibold uppercase tracking-widest text-aqua mb-4">
-        For anxious beginners
-      </p>
-      <h1 class="hero-heading font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-tight mb-6">
-        Find your <em>flow.</em>
-      </h1>
-      <p class="text-white/80 text-lg sm:text-xl leading-relaxed max-w-md mb-8">
-        The intelligent swim app that removes the anxiety from swimming — calm design and gentle guidance, one swim at a time.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a
-          href="#email-capture"
-          class="inline-flex justify-center items-center px-6 py-3 rounded-pill bg-aqua text-primary font-semibold text-base hover:bg-aqua/90 transition-colors ease-brand duration-300"
-        >
-          Start swimming calmly
-        </a>
-        <a
-          href="#app-preview"
-          class="inline-flex justify-center items-center px-6 py-3 text-white/80 font-medium text-base hover:text-white transition-colors"
-        >
-          See how it works →
-        </a>
+    <div class="hero-copy">
+      <span class="eyebrow">For anxious beginners</span>
+      <h1>Find your <span class="flow">flow.</span></h1>
+      <p class="sub">The intelligent swim app that removes the anxiety from swimming — calm design and gentle guidance, one swim at a time.</p>
+      <div class="hero-cta">
+        <a href="#email-capture" class="btn btn-primary">Start swimming calmly</a>
+        <a href="#app-preview" class="btn btn-ghost">See how it works →</a>
       </div>
+      <p class="hero-note">Built on biomedical insight · Free to begin</p>
     </div>
 
-    <!-- Swimmer image -->
-    <div class="relative flex justify-center md:justify-end">
-      <img
-        src="/hero_swimmer_white.png"
-        alt="Swimmer in calm water"
-        class="relative z-10 max-h-[480px] object-contain drop-shadow-2xl"
-        loading="eager"
-      />
+    <!-- Art -->
+    <div class="hero-art">
+      <div class="disc" aria-hidden="true"></div>
+      <img src="/hero_swimmer.png" alt="A single-line drawing of a calm swimmer" loading="eager" />
     </div>
   </div>
-</section>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 56px 0 80px;
+    overflow: hidden;
+    background: #FAF6F0;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 65% 40%, rgba(48,230,248,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+  .eyebrow {
+    display: block;
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #105F80;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #16201F;
+    margin: 0 0 0;
+  }
+  .flow {
+    color: #105F80;
+    font-style: italic;
+  }
+  .sub {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #42585C;
+    margin: 22px 0 0;
+    max-width: 480px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .btn {
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 9999px;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 280ms cubic-bezier(.22,.61,.36,1);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: #105F80;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(16,95,128,0.22);
+  }
+  .btn-primary:hover {
+    background: #07425B;
+    box-shadow: 0 6px 20px rgba(16,95,128,0.3);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #42585C;
+    padding: 14px 4px;
+  }
+  .btn-ghost:hover { color: #105F80; }
+
+  .hero-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #6B8085;
+  }
+
+  .hero-art {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .disc {
+    position: absolute;
+    inset: 8% 4%;
+    background: radial-gradient(circle at 50% 45%, rgba(48,230,248,0.18) 0%, transparent 68%);
+    border-radius: 50%;
+  }
+  .hero-art img {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 860px) {
+    .hero { padding: 40px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-art { order: -1; }
+    .hero-art img { max-width: 280px; }
+  }
+</style>

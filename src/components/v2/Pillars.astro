@@ -1,57 +1,106 @@
 ---
-// Pillars.astro — v2 four pillars section
+// Pillars.astro — v2 four pillars
 const pillars = [
-  {
-    title: "Less anxiety",
-    description: "Sessions designed to dissolve fear, not ignore it — at a pace that feels safe.",
-    icon: "/anxiety_icon.png",
-    iconAlt: "Anxiety icon",
-  },
-  {
-    title: "Real support",
-    description: "Coaching and a calm community. You are never alone in the lane.",
-    icon: "/support_icon.png",
-    iconAlt: "Support icon",
-  },
-  {
-    title: "Steady progress",
-    description: "Tiny, trackable steps that quietly build real confidence in the water.",
-    icon: "/progress_icon.png",
-    iconAlt: "Progress icon",
-  },
-  {
-    title: "Quiet joy",
-    description: "The goal isn't laps. It's the feeling of floating — free and at ease.",
-    icon: "/joy_icon.png",
-    iconAlt: "Joy icon",
-  },
+  { title: "Less anxiety", desc: "Sessions designed to dissolve fear, not ignore it — at a pace that feels safe.", icon: "/anxiety_icon.png" },
+  { title: "Real support", desc: "Coaching and a calm community. You are never alone in the lane.", icon: "/support_icon.png" },
+  { title: "Steady progress", desc: "Tiny, trackable steps that quietly build real confidence in the water.", icon: "/progress_icon.png" },
+  { title: "Quiet joy", desc: "The goal isn't laps. It's the feeling of floating — free and at ease.", icon: "/joy_icon.png" },
 ];
 ---
 
-<section id="pillars" class="bg-base-dark py-16 sm:py-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-12">
-      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-fg2 mb-4">
-        How Eddy helps
-      </p>
-      <h2 class="font-display text-3xl sm:text-4xl font-semibold text-text">
-        Four ways the water gets gentler.
-      </h2>
+<section id="pillars">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How Eddy helps</span>
+      <h2>Four ways the water gets gentler.</h2>
     </div>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
-      {pillars.map((pillar) => (
-        <li
-          class="bg-surface rounded-card p-6 flex flex-col items-start gap-4 transition-transform duration-300 ease-brand hover:-translate-y-1 hover:shadow-lg"
-        >
-          <img
-            src={pillar.icon}
-            alt={pillar.iconAlt}
-            class="h-12 w-12 object-contain"
-          />
-          <h3 class="font-display text-xl font-semibold text-text">{pillar.title}</h3>
-          <p class="text-fg2 text-sm leading-relaxed">{pillar.description}</p>
+    <ul class="pillars">
+      {pillars.map((p) => (
+        <li class="pillar">
+          <img src={p.icon} alt="" aria-hidden="true" />
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
         </li>
       ))}
     </ul>
   </div>
 </section>
+
+<style>
+  section {
+    padding: 92px 0;
+    background: #FAF6F0;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .sec-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 52px;
+  }
+  .eyebrow {
+    display: block;
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #105F80;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    letter-spacing: -0.02em;
+    color: #16201F;
+    margin: 0;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pillar {
+    background: #fff;
+    border: 1px solid #EADFCF;
+    border-radius: 18px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 2px 8px rgba(16,95,128,0.06);
+    transition: transform 280ms cubic-bezier(.22,.61,.36,1), box-shadow 280ms cubic-bezier(.22,.61,.36,1);
+  }
+  .pillar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(16,95,128,0.12);
+  }
+  .pillar img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin: -4px 0 14px -4px;
+  }
+  h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #16201F;
+    margin: 0 0 8px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #42585C;
+    margin: 0;
+  }
+  @media (max-width: 860px) { .pillars { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .pillars { grid-template-columns: 1fr; } }
+</style>
