@@ -1,0 +1,74 @@
+---
+import { SEO } from "astro-seo";
+import ThemeSwitcher from "@components/ThemeSwitcher.astro";
+import "@fontsource-variable/inter/index.css";
+import "../styles/themes.css";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const resolvedImageWithDomain = new URL("/opengraph.png", Astro.site).toString();
+
+const { title, description = "Eddy removes the anxiety from swimming." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="eddy-v2">
+  <head>
+    <script is:inline>
+      (function() {
+        var saved = localStorage.getItem('eddy-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      })();
+    </script>
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- v2 fonts — Source Serif 4 + Figtree via Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=Figtree:wght@400;500;600&display=swap"
+    />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL}
+      twitter={{
+        creator: "",
+        site: "",
+        card: "summary_large_image",
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: title,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Eddy Homepage Screenshot",
+        },
+      }}
+    />
+  </head>
+
+  <body class="bg-base">
+    <slot />
+    <ThemeSwitcher />
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+  <script defer is:inline src="https://cloud.umami.is/script.js" data-website-id="9e6573c7-7ee3-47c8-bd4b-12f537a56c94"></script>
+</html>
