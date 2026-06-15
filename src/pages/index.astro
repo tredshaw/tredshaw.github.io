@@ -1,59 +1,24 @@
 ---
-import Container from "@components/container.astro";
-import Cta from "@components/old/cta.astro";
-// import Features from "@components/features.astro";
-import Hero from "@components/home_content/hero.astro";
-import Problem from "@components/home_content/home_problem.astro";
-import LowerContact from "@components/lower_contact.astro";
-// import Logos from "@components/logos.astro";
-import Layout from "@layouts/Layout.astro";
-import ContactForm from "@components/contactform.astro";
-import HomeTestimonials from "../components/home_content/home_testimonials.astro";
-import HomeAboutFounder from "../components/home_content/home_about_founder.astro";
+import LayoutV2 from "@layouts/LayoutV2.astro";
+import Nav from "@components/v2/Nav.astro";
+import Hero from "@components/v2/Hero.astro";
+import Reassure from "@components/v2/Reassure.astro";
+import Pillars from "@components/v2/Pillars.astro";
+import AppPreview from "@components/v2/AppPreview.astro";
+import Testimonials from "@components/v2/Testimonials.astro";
+import EmailCapture from "@components/v2/EmailCapture.astro";
+import Footer from "@components/v2/Footer.astro";
 ---
 
-<Layout title="eddy">
-
-  <div class="w-full bg-primary">
+<LayoutV2 title="Eddy — Find your flow.">
+  <Nav />
+  <main>
     <Hero />
-  </div>
-
-  <Container>
-    <Problem />
-    <HomeTestimonials />
-    <!--<Features />-->
-    <!--<Logos />-->
-    <!--<Cta />-->
-    <!--<ContactForm />-->
-  </Container>
-
-  <div class="w-full bg-base_dark">
-    <HomeAboutFounder />
-  </div>
-
-  <!--<Container>-->
-  <!--  <LowerContact />-->
-  <!--</Container>-->
-
-  <!--Added the typeform for swim plan generator-->
-  <!--<div data-tf-live="01K48P1QHMWCJ8DM61AQRKJKZM"></div><script is:inline src="//embed.typeform.com/next/embed.js"></script>-->
-
-
-<!--  Tally form-->
-  <script is:inline async src="https://tally.so/widgets/embed.js"></script>
-
-  <script is:inline>
-  window.TallyConfig = {
-  "formId": "wQbNEg",
-  "popup": {
-    "width": 450,
-    "open": {
-      "trigger": "scroll",
-      "scrollPercent": 5
-    },
-    "autoClose": 5000,
-    "doNotShowAfterSubmit": true
-    }
-  };
-  </script>
-</Layout>
+    <Reassure />
+    <Pillars />
+    <AppPreview />
+    <Testimonials />
+    <EmailCapture />
+  </main>
+  <Footer />
+</LayoutV2>
