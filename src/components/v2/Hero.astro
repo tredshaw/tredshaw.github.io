@@ -12,12 +12,8 @@ const { hero } = copy;
       <h1 id="heroHeadline" data-h="1" set:html={hero.headlineA}></h1>
       <p class="sub" id="heroSub" data-h="2">{hero.subA}</p>
       <div class="capture" data-h="3">
-        <form id="heroForm" novalidate>
-          <input type="hidden" name="u" value="e030f7d989712f6a3a269d158" />
-          <input type="hidden" name="id" value="303ad0aa59" />
-          <input type="hidden" name="f_id" value="00a136e7f0" />
-          <input class="mc-hp" type="text" name="b_e030f7d989712f6a3a269d158_303ad0aa59" tabindex="-1" value="" aria-hidden="true" autocomplete="off" />
-          <input type="email" id="heroEmail" name="EMAIL" placeholder={hero.emailPlaceholder} aria-label="Email address" autocomplete="email" required />
+        <form id="heroForm" action="https://assets.mailerlite.com/jsonp/2446772/forms/190355684246685152/subscribe" novalidate>
+          <input type="email" id="heroEmail" name="fields[email]" placeholder={hero.emailPlaceholder} aria-label="Email address" autocomplete="email" required />
           <button type="submit" class="btn">{hero.cta} <span class="arr">→</span></button>
         </form>
         <p class="done" id="heroDone"></p>

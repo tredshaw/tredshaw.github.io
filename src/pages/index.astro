@@ -130,41 +130,20 @@ const clientCopy = {
   });
   cyc();
 
-  /* ---- Mailchimp JSONP subscribe (shared by hero + waitlist) ---- */
-  function mcSubscribe(email, cbName, onSuccess, onError) {
-    var params = new URLSearchParams({
-      u: "e030f7d989712f6a3a269d158",
-      id: "303ad0aa59",
-      f_id: "00a136e7f0",
-      EMAIL: email,
-      b_e030f7d989712f6a3a269d158_303ad0aa59: "",
-      c: cbName,
-    });
-    var done = false;
-    var s = document.createElement("script");
-    var fb = setTimeout(function () {
-      if (done) return; done = true;
-      onSuccess();
-      try { delete window[cbName]; } catch (e) {}
-      s.remove();
-    }, 6000);
-    window[cbName] = function (data) {
-      if (done) return; done = true;
-      clearTimeout(fb);
-      // Treat success and benign errors (e.g. already subscribed) gently as success.
-      onSuccess();
-      try { delete window[cbName]; } catch (e) {}
-      s.remove();
-    };
-    s.src = "https://swimwitheddy.us19.list-manage.com/subscribe/post-json?" + params.toString();
-    s.onerror = function () {
-      if (done) return; done = true;
-      clearTimeout(fb);
-      onError();
-      try { delete window[cbName]; } catch (e) {}
-      s.remove();
-    };
-    document.head.appendChild(s);
+  /* ---- MailerLite subscribe (shared by hero + waitlist) ---- */
+  function mlSubscribe(email, _cbName, onSuccess, onError) {
+    var body = new URLSearchParams();
+    body.set("fields[email]", email);
+    body.set("ml-submit", "1");
+    body.set("anticsrf", "true");
+    fetch("https://assets.mailerlite.com/jsonp/2446772/forms/190355684246685152/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString(),
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) { if (data && data.success === false) { onError(); } else { onSuccess(); } })
+      .catch(function () { onError(); });
   }
 
   /* hero form */
@@ -174,7 +153,7 @@ const clientCopy = {
     if (!v) return;
     var form = e.target;
     var done = document.getElementById("heroDone");
-    mcSubscribe(v, "mcHero", function () {
+    mlSubscribe(v, "mlHero", function () {
       abTrack("signup", { variant: AB_VARIANT, form: "hero" });
       form.style.display = "none";
       done.textContent = EDDY_COPY.heroDone;
@@ -192,7 +171,7 @@ const clientCopy = {
     if (!v) return;
     var form = e.target;
     var fine = document.getElementById("waitFine");
-    mcSubscribe(v, "mcWait", function () {
+    mlSubscribe(v, "mlWait", function () {
       abTrack("signup", { variant: AB_VARIANT, form: "waitlist" });
       form.style.display = "none";
       fine.textContent = EDDY_COPY.waitDone;
