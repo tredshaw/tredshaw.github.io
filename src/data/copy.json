@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "title": "Eddy",
+    "description": "Eddy removes the anxiety from swimming."
+  },
+  "nav": {
+    "brand": "Eddy",
+    "links": [
+      {
+        "label": "Pillars",
+        "href": "#pillars"
+      },
+      {
+        "label": "The method",
+        "href": "#method"
+      },
+      {
+        "label": "Your voices",
+        "href": "#voices"
+      }
+    ],
+    "cta": "Join the waitlist"
+  },
+  "hero": {
+    "eyebrow": "The intelligent swim app",
+    "headlineA": "Find your <span class=\"it\">flow</span>.",
+    "headlineB": "Swimming, <span class=\"it\">without</span> the fear.",
+    "subA": "Swimming, without the fear. The gentle swim app for anxious beginners. Calm design and biomedical insight to take you from panic to peace.",
+    "subB": "Find your flow. The gentle swim app for anxious beginners. Calm design and biomedical insight to take you from panic to peace, one gentle swim at a time.",
+    "emailPlaceholder": "Enter your email",
+    "cta": "Access your 4-week plan",
+    "proof": "Be one of the first to swim with Eddy.",
+    "trust": "Built on biomedical insight · London, UK",
+    "done": "You're on the list!",
+    "error": "Something went wrong — please try again."
+  },
+  "pillars": {
+    "eyebrow": "What Eddy is built on",
+    "heading": "Four feelings, one <span class=\"it\">gentle</span> current.",
+    "intro": "Every part of Eddy is shaped around the emotional journey of learning to swim as an adult — from the fear that holds you back to the joy that carries you forward.",
+    "items": [
+      {
+        "title": "Anxiety",
+        "copy": "We acknowledge the fear first, then design to gently dissolve it."
+      },
+      {
+        "title": "Support",
+        "copy": "Coaching and community in equal measure. Never alone in the lane."
+      },
+      {
+        "title": "Progress",
+        "copy": "Tiny, trackable steps that quietly build into real confidence."
+      },
+      {
+        "title": "Joy",
+        "copy": "The goal was never laps. It's the feeling of floating — calm and free."
+      }
+    ]
+  },
+  "method": {
+    "eyebrow": "The method",
+    "heading": "Calm by design. Backed by <span class=\"it\">science</span>.",
+    "intro": "Eddy was built by a biomedical engineer who understands the mechanics of water — and the very human fear of being in it. The belief behind it is simple: swimming should feel like freedom, not fear.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Calm by design",
+        "copy": "Deep-water colours, soft edges, and an unhurried pace. Every screen is shaped to lower your heart rate, not raise it."
+      },
+      {
+        "n": "02",
+        "title": "Biomedical insight",
+        "copy": "Sessions grounded in biomechanics and fluid mechanics — so each step is gentle on your nerves and kind to your body."
+      },
+      {
+        "n": "03",
+        "title": "Gentle AI guidance",
+        "copy": "An attentive companion that adapts to how you feel each day, nudging you forward only as fast as you're ready."
+      }
+    ]
+  },
+  "voices": {
+    "eyebrow": "In their words",
+    "quotes": [
+      {
+        "q": "The sessions produced by the swim plan generator have been brilliant in giving me the <span class=\"it\">confidence</span> to learn to swim for my half-Ironman next year. Even though I have been using the Beta version, I can already see the value this will bring to anxious beginners.",
+        "who": "<b>Cecilia R.</b> · Beginner Triathlete"
+      },
+      {
+        "q": "If you would like to be part of the team who tests the initial versions of the app, sign-up and <span class=\"it\">reach out</span> to us today!",
+        "who": "<b>You!</b> · App Tester"
+      }
+    ]
+  },
+  "waitlist": {
+    "eyebrow": "Start swimming calmly",
+    "heading": "Your first calm swim is <span class=\"it\">closer</span> than you think.",
+    "copy": "Join the waitlist and help me build the swim app you wish had existed when you first stood nervously at the water's edge.",
+    "emailPlaceholder": "you@email.com",
+    "cta": "Join us",
+    "fine": "No spam, ever. Just one gentle note when Eddy is ready for you.",
+    "done": "You're on the list — we'll be in touch gently. Welcome to the calm.",
+    "error": "Something went wrong — please try again."
+  },
+  "footer": {
+    "brandDesc": "The intelligent swim app for anxious beginners. Find your flow — one gentle swim at a time.",
+    "columns": [
+      {
+        "heading": "Product",
+        "links": [
+          {
+            "label": "Pillars",
+            "href": "/#pillars"
+          },
+          {
+            "label": "The method",
+            "href": "/#method"
+          },
+          {
+            "label": "Join the waitlist",
+            "href": "/#waitlist"
+          }
+        ]
+      },
+      {
+        "heading": "Company",
+        "links": [
+          {
+            "label": "About",
+            "href": "/#method"
+          },
+          {
+            "label": "Contact",
+            "href": "mailto:swimwitheddy@gmail.com"
+          }
+        ]
+      },
+      {
+        "heading": "Legal",
+        "links": [
+          {
+            "label": "Privacy",
+            "href": "/privacy/"
+          }
+        ]
+      }
+    ],
+    "contactEmail": "swimwitheddy@gmail.com",
+    "copyright": "Eddy. London, UK."
+  }
+}
