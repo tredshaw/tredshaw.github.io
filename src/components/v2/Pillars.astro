@@ -1,106 +1,26 @@
 ---
-// Pillars.astro — v2 four pillars
-const pillars = [
-  { title: "Less anxiety", desc: "Sessions designed to dissolve fear, not ignore it — at a pace that feels safe.", icon: "/anxiety_icon.png" },
-  { title: "Real support", desc: "Coaching and a calm community. You are never alone in the lane.", icon: "/support_icon.png" },
-  { title: "Steady progress", desc: "Tiny, trackable steps that quietly build real confidence in the water.", icon: "/progress_icon.png" },
-  { title: "Quiet joy", desc: "The goal isn't laps. It's the feeling of floating — free and at ease.", icon: "/joy_icon.png" },
-];
+// Pillars.astro — v2 four pillars (frost glass treatment via body[data-pillar="frost"])
+// Copy comes from src/data/copy.json; icons + card classes stay fixed here.
+import copy from "@data/copy.json";
+const { pillars } = copy;
+const icons = ["/anxiety_icon.png", "/support_icon.png", "/progress_icon.png", "/joy_icon.png"];
 ---
 
-<section id="pillars">
+<section class="sec" id="pillars">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">How Eddy helps</span>
-      <h2>Four ways the water gets gentler.</h2>
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="pip"></span> {pillars.eyebrow}</span>
+      <h2 set:html={pillars.heading}></h2>
+      <p>{pillars.intro}</p>
     </div>
-    <ul class="pillars">
-      {pillars.map((p) => (
-        <li class="pillar">
-          <img src={p.icon} alt="" aria-hidden="true" />
+    <div class="pillars">
+      {pillars.items.map((p, i) => (
+        <article class={`pillar p${i + 1}`} data-reveal data-reveal-d={String(i)}>
+          <img class="ico" src={icons[i]} alt="" />
           <h3>{p.title}</h3>
-          <p>{p.desc}</p>
-        </li>
+          <p>{p.copy}</p>
+        </article>
       ))}
-    </ul>
+    </div>
   </div>
 </section>
-
-<style>
-  section {
-    padding: 92px 0;
-    background: #FAF6F0;
-  }
-  .wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  .sec-head {
-    text-align: center;
-    max-width: 620px;
-    margin: 0 auto 52px;
-  }
-  .eyebrow {
-    display: block;
-    font-family: 'Figtree', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #105F80;
-    margin-bottom: 14px;
-  }
-  h2 {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    letter-spacing: -0.02em;
-    color: #16201F;
-    margin: 0;
-  }
-  .pillars {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .pillar {
-    background: #fff;
-    border: 1px solid #EADFCF;
-    border-radius: 18px;
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    box-shadow: 0 2px 8px rgba(16,95,128,0.06);
-    transition: transform 280ms cubic-bezier(.22,.61,.36,1), box-shadow 280ms cubic-bezier(.22,.61,.36,1);
-  }
-  .pillar:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 32px rgba(16,95,128,0.12);
-  }
-  .pillar img {
-    width: 72px;
-    height: 72px;
-    object-fit: contain;
-    margin: -4px 0 14px -4px;
-  }
-  h3 {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: #16201F;
-    margin: 0 0 8px;
-  }
-  p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #42585C;
-    margin: 0;
-  }
-  @media (max-width: 860px) { .pillars { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .pillars { grid-template-columns: 1fr; } }
-</style>

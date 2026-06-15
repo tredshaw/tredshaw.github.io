@@ -22,3 +22,27 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# internal dev artefacts / notes — keep out of public repo
+artefacts/
+dev-notes.md
+
+# Claude Code local settings + worktrees
+.claude/
+
+# Live site = landing page only. Orphaned v1 pages + blog stay local, never pushed.
+/src/pages/about.astro
+/src/pages/contact.astro
+/src/pages/features.astro
+/src/pages/pricing.astro
+/src/pages/thankyou.astro
+/src/pages/download.astro
+/src/pages/old/
+/src/pages/blog.astro
+/src/pages/blog/
+/src/content/blog/
+/src/content/team/
+
+# Copy admin is local-only (run via `npm run dev`) — never deployed/public for security.
+# NB: src/data/copy.json stays tracked so the live build can read it.
+/src/pages/admin.astro

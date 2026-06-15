@@ -1,16 +1,17 @@
 ---
 import { SEO } from "astro-seo";
-import "../styles/themes.css";
+import "../styles/v2.css";
 
 export interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const resolvedImageWithDomain = new URL("/opengraph.png", Astro.site).toString();
 
-const { title, description = "Eddy removes the anxiety from swimming." } = Astro.props;
+const { title, description = "Eddy removes the anxiety from swimming.", noindex = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -34,6 +35,8 @@ const { title, description = "Eddy removes the anxiety from swimming." } = Astro
       title={title}
       description={description}
       canonical={canonicalURL}
+      noindex={noindex}
+      nofollow={noindex}
       twitter={{
         creator: "",
         site: "",
@@ -53,23 +56,10 @@ const { title, description = "Eddy removes the anxiety from swimming." } = Astro
     />
   </head>
 
-  <body>
+  <body data-hero="cove" data-pillar="frost">
     <slot />
     <style is:global>
       *, *::before, *::after { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: #FAF6F0;
-        color: #16201F;
-        font-family: 'Figtree', system-ui, sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      a { color: inherit; text-decoration: none; }
-      img { display: block; max-width: 100%; }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Source Serif 4', Georgia, serif;
-      }
     </style>
   </body>
   <script defer is:inline src="https://cloud.umami.is/script.js" data-website-id="9e6573c7-7ee3-47c8-bd4b-12f537a56c94"></script>

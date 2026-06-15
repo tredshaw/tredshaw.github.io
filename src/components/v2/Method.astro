@@ -1,0 +1,24 @@
+---
+// Method.astro — v2 editorial three-step method section
+import copy from "@data/copy.json";
+const { method } = copy;
+---
+
+<section class="sec hair" id="method">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow"><span class="pip"></span> {method.eyebrow}</span>
+      <h2 set:html={method.heading}></h2>
+      <p>{method.intro}</p>
+    </div>
+    <div class="method-grid">
+      {method.steps.map((s, i) => (
+        <div class="mstep" data-reveal data-reveal-d={String(i)}>
+          <div class="mn">{s.n}</div>
+          <h3>{s.title}</h3>
+          <p>{s.copy}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+// Waitlist.astro — v2 ocean-gradient CTA band with Mailchimp capture (JS in index.astro)
+import copy from "@data/copy.json";
+const { waitlist } = copy;
+---
+
+<section class="wl-band" id="waitlist">
+  <div class="wrap">
+    <div class="wl-card" data-reveal>
+      <span class="eyebrow c" style="color:var(--aqua);position:relative"><span class="pip" style="background:var(--aqua);box-shadow:none"></span> {waitlist.eyebrow}</span>
+      <h2 style="margin-top:16px" set:html={waitlist.heading}></h2>
+      <p>{waitlist.copy}</p>
+      <form class="waitlist" id="waitForm" novalidate>
+        <input type="hidden" name="u" value="e030f7d989712f6a3a269d158" />
+        <input type="hidden" name="id" value="303ad0aa59" />
+        <input type="hidden" name="f_id" value="00a136e7f0" />
+        <input class="mc-hp" type="text" name="b_e030f7d989712f6a3a269d158_303ad0aa59" tabindex="-1" value="" aria-hidden="true" autocomplete="off" />
+        <input type="email" id="waitEmail" name="EMAIL" placeholder={waitlist.emailPlaceholder} aria-label="Email address" autocomplete="email" required />
+        <button type="submit" class="btn btn-go">{waitlist.cta} <span class="arr">→</span></button>
+      </form>
+      <p class="wl-fine" id="waitFine">{waitlist.fine}</p>
+    </div>
+  </div>
+</section>

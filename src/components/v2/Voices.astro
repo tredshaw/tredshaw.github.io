@@ -1,0 +1,27 @@
+---
+// Voices.astro — v2 testimonial carousel (copy from src/data/copy.json; dot nav JS in index.astro)
+import copy from "@data/copy.json";
+const { voices } = copy;
+const quotes = voices.quotes;
+---
+
+<section class="sec quotes hair" id="voices">
+  <div class="wrap">
+    <span class="eyebrow c" data-reveal><span class="pip"></span> {voices.eyebrow}</span>
+    <div class="quote-card" data-reveal data-reveal-d="1">
+      <div class="quote-stage">
+        {quotes.map((quote, i) => (
+          <figure class={`quote${i === 0 ? " on" : ""}`}>
+            <p class="q" set:html={quote.q} />
+            <figcaption class="who" set:html={quote.who} />
+          </figure>
+        ))}
+      </div>
+      <div class="dots" id="dots">
+        {quotes.map((_, i) => (
+          <button class={i === 0 ? "on" : ""} aria-label={`Quote ${i + 1}`}></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

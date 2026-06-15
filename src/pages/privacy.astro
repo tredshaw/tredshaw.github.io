@@ -1,0 +1,177 @@
+---
+import LayoutV2 from "@layouts/LayoutV2.astro";
+import Footer from "@components/v2/Footer.astro";
+
+const updated = "15 June 2026";
+const contact = "swimwitheddy@gmail.com";
+---
+
+<LayoutV2 title="Privacy Policy — Eddy" description="How Eddy collects, uses and protects your information.">
+  <header class="legal-top">
+    <div class="wrap">
+      <a href="/" class="brand" aria-label="Eddy home">
+        <span class="mark"><img src="/logo.png" alt="" /></span>
+        <span class="name">Eddy</span>
+      </a>
+      <a href="/" class="back">← Back to home</a>
+    </div>
+  </header>
+
+  <main class="legal">
+    <div class="wrap">
+      <p class="eyebrow"><span class="pip"></span> Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: {updated}</p>
+
+      <p>
+        This policy explains what personal information we collect when you join the Eddy
+        waitlist or visit this website, how we use it, and the rights you have over it.
+        We've tried to keep it short and in plain English.
+      </p>
+
+      <h2>1. Who we are</h2>
+      <p>
+        The data controller responsible for your information is <strong>Toby Redshaw</strong>,
+        trading as “Eddy”, based in London, United Kingdom. If you have any questions about this
+        policy or your data, you can reach us at <a href={`mailto:${contact}`}>{contact}</a>.
+      </p>
+
+      <h2>2. What we collect</h2>
+      <ul>
+        <li><strong>Your email address</strong> — when you submit it through one of the waitlist forms on this site.</li>
+        <li><strong>Limited, privacy-friendly analytics</strong> — anonymous, aggregated information about how the site is used (for example, which pages are viewed), which does not identify you.</li>
+      </ul>
+      <p>We do not ask for, or collect, any other personal details at this stage.</p>
+
+      <h2>3. Why we use it, and our lawful basis</h2>
+      <p>
+        We use your email address solely to add you to our waitlist and to send you occasional
+        updates about Eddy — most importantly, to let you know when it's ready for you. Our lawful
+        basis for this is your <strong>consent</strong>, which you give by submitting your email.
+        You can withdraw that consent at any time (see section 8).
+      </p>
+
+      <h2>4. The service we use to manage emails</h2>
+      <p>
+        We use <strong>Mailchimp</strong> (a product of Intuit Inc.) to store waitlist emails and
+        send messages. Mailchimp acts as our data processor and only handles your information on our
+        instructions. You can read Mailchimp's own privacy practices on their website.
+      </p>
+
+      <h2>5. Cookies and analytics</h2>
+      <p>
+        Our analytics tool, <strong>Umami</strong>, is cookieless and does not collect personal data
+        or track you across other websites. This site does not set advertising or tracking cookies,
+        so no cookie consent banner is required.
+      </p>
+
+      <h2>6. International transfers</h2>
+      <p>
+        Because Mailchimp is a US-based provider, your email address may be processed outside the UK.
+        Where this happens, it is protected by appropriate safeguards (such as the UK extension to the
+        EU–US Data Privacy Framework and/or Standard Contractual Clauses).
+      </p>
+
+      <h2>7. How long we keep it</h2>
+      <p>
+        We keep your email only for as long as we run the waitlist, or until you ask us to remove it
+        or unsubscribe — whichever comes first. After that, it is deleted.
+      </p>
+
+      <h2>8. Your rights</h2>
+      <p>Under UK data protection law you have the right to:</p>
+      <ul>
+        <li>access the personal data we hold about you;</li>
+        <li>have inaccurate data corrected;</li>
+        <li>have your data erased;</li>
+        <li>restrict or object to how we use it;</li>
+        <li>receive a copy of your data (data portability); and</li>
+        <li>withdraw your consent at any time.</li>
+      </ul>
+      <p>To exercise any of these, just email us at <a href={`mailto:${contact}`}>{contact}</a>.</p>
+
+      <h2>9. Unsubscribing</h2>
+      <p>
+        Every email we send includes an unsubscribe link. Clicking it removes you from the waitlist
+        immediately. You can also email us and we'll remove you.
+      </p>
+
+      <h2>10. Complaints</h2>
+      <p>
+        If you're unhappy with how we've handled your information, you can contact us first, or make a
+        complaint to the UK's data protection regulator, the Information Commissioner's Office (ICO),
+        at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>.
+      </p>
+
+      <h2>11. Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time. If we make significant changes, we'll update the
+        date at the top of this page.
+      </p>
+
+      <p class="back-cta"><a href="/" class="btn btn-primary">← Back to home</a></p>
+    </div>
+  </main>
+
+  <Footer />
+</LayoutV2>
+
+<style>
+  .legal-top {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .legal-top .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 20px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .legal-top .brand { display: flex; align-items: center; gap: 12px; }
+  .legal-top .mark {
+    width: 38px; height: 38px; border-radius: 12px;
+    display: grid; place-items: center; flex: none; background: var(--teal);
+  }
+  .legal-top .mark img { width: 23px; height: 23px; }
+  .legal-top .name {
+    font-family: var(--sans); font-weight: 300; font-size: 24px;
+    line-height: 1; color: var(--ink);
+  }
+  .legal-top .back { font-size: 14.5px; font-weight: 500; color: var(--fg-2); }
+  .legal-top .back:hover { color: var(--teal); }
+
+  .legal {
+    background: var(--bg);
+    color: var(--fg);
+    padding: clamp(48px, 7vw, 90px) 0 clamp(60px, 8vw, 100px);
+  }
+  .legal .wrap { max-width: 760px; margin: 0 auto; padding: 0 34px; }
+
+  .legal h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2.2rem, 5vw, 3.1rem);
+    letter-spacing: -.02em; color: var(--ink);
+    margin: 14px 0 0;
+  }
+  .legal .updated { color: var(--fg-3); font-size: 14.5px; margin: 10px 0 28px; }
+  .legal h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 1.4rem;
+    color: var(--ink); margin: 38px 0 12px;
+  }
+  .legal p { font-size: 1.04rem; line-height: 1.7; color: var(--fg-2); margin: 0 0 14px; }
+  .legal strong { color: var(--fg); font-weight: 600; }
+  .legal ul { margin: 0 0 14px; padding-left: 22px; }
+  .legal li { font-size: 1.04rem; line-height: 1.65; color: var(--fg-2); margin-bottom: 7px; }
+  .legal a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+  .legal a:hover { color: var(--teal-dark); }
+  .legal .back-cta { margin-top: 44px; }
+  .legal .back-cta a.btn-primary { text-decoration: none; color: #fff; }
+  .legal .back-cta a.btn-primary:hover { color: #fff; }
+
+  @media (max-width: 560px) {
+    .legal-top .wrap, .legal .wrap { padding-left: 22px; padding-right: 22px; }
+  }
+</style>

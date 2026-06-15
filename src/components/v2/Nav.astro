@@ -1,181 +1,30 @@
 ---
-// Nav.astro — v2 navigation
+// Nav.astro — v2 navigation (design-faithful)
+// Styles are global in src/styles/v2.css. Interaction JS lives in index.astro.
+import copy from "@data/copy.json";
+const { nav } = copy;
 ---
 
-<nav id="v2-nav">
-  <div class="nav-inner wrap">
-    <!-- Brand -->
-    <a href="/" class="brand">
-      <img src="/logo.png" alt="Eddy" />
-      Eddy
+<nav class="nav" id="nav">
+  <div class="wrap"><div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Eddy home">
+      <span class="mark"><img src="/logo.png" alt="" /></span>
+      <span class="name">{nav.brand}</span>
     </a>
-
-    <!-- Desktop links -->
-    <ul class="nav-links">
-      <li><a href="/about/">About</a></li>
-      <li><a href="#pillars">Pillars</a></li>
-      <li><a href="#app-preview">The app</a></li>
-      <li><a href="#testimonials">Stories</a></li>
-    </ul>
-
-    <div class="nav-right">
-      <a href="#email-capture" class="btn-nav">Start swimming calmly</a>
-      <button id="v2-nav-toggle" aria-label="Open menu" aria-expanded="false" class="hamb">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
+    <div class="nav-links">
+      {nav.links.map((l) => <a href={l.href}>{l.label}</a>)}
     </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="v2-mobile-menu" class="mobile-menu hidden">
-    <a href="/about/">About</a>
-    <a href="#pillars">Pillars</a>
-    <a href="#app-preview">The app</a>
-    <a href="#testimonials">Stories</a>
-    <a href="#email-capture" class="btn-nav mobile-cta">Start swimming calmly</a>
-  </div>
+    <div class="nav-cta">
+      <button id="themeToggle" aria-label="Toggle dark/light mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="#waitlist" class="btn btn-nav">{nav.cta}</a>
+      <button class="hamb" id="hamb" aria-label="Open menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button>
+    </div>
+  </div></div>
 </nav>
-
-<style>
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: color-mix(in srgb, #FAF6F0 85%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 300ms ease, background 300ms ease;
-  }
-  nav.scrolled {
-    border-color: #EADFCF;
-  }
-  .wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 700;
-    font-size: 22px;
-    letter-spacing: -0.02em;
-    color: #16201F;
-  }
-  .brand img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    font-size: 15px;
-    font-weight: 500;
-    color: #42585C;
-    transition: color 200ms ease;
-  }
-  .nav-links a:hover { color: #105F80; }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .btn-nav {
-    display: inline-flex;
-    align-items: center;
-    padding: 11px 22px;
-    border-radius: 9999px;
-    background: #105F80;
-    color: #fff;
-    font-family: 'Figtree', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    transition: background 200ms ease, box-shadow 200ms ease;
-    white-space: nowrap;
-  }
-  .btn-nav:hover {
-    background: #07425B;
-    box-shadow: 0 4px 14px rgba(16,95,128,0.3);
-  }
-  .hamb {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    color: #16201F;
-  }
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 12px 28px 20px;
-    border-top: 1px solid #EADFCF;
-    background: #FAF6F0;
-  }
-  .mobile-menu a {
-    font-size: 15px;
-    font-weight: 500;
-    color: #42585C;
-    padding: 10px 0;
-    border-bottom: 1px solid #F0EBE3;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-cta {
-    margin-top: 8px;
-    text-align: center;
-    border-bottom: none !important;
-  }
-  .hidden { display: none !important; }
-
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .btn-nav:not(.mobile-cta) { display: none; }
-    .hamb { display: block; }
-  }
-</style>
-
-<script is:inline>
-  (function () {
-    var nav = document.getElementById('v2-nav');
-    var toggle = document.getElementById('v2-nav-toggle');
-    var menu = document.getElementById('v2-mobile-menu');
-
-    window.addEventListener('scroll', function () {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
-    }, { passive: true });
-
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('hidden') === false;
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-</script>
+<div class="mobile-menu" id="mobileMenu">
+  {nav.links.map((l) => <a href={l.href} data-close>{l.label}</a>)}
+  <a href="#waitlist" class="btn btn-primary" data-close>{nav.cta}</a>
+</div>

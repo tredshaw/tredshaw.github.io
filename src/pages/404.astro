@@ -1,15 +1,114 @@
 ---
-import Container from "@components/container.astro";
-import Layout from "@layouts/Layout.astro";
+import LayoutV2 from "@layouts/LayoutV2.astro";
 ---
 
-<Layout title="404 Not Found">
-  <Container>
-    <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
-      <div class="mt-16 text-center">
-        <h1 class="text-4xl lg:text-5xl font-bold text-accent lg:tracking-tight">404</h1>
-        <p class="text-lg mt-4 text-slate-600">Website couldn't "just keep swimming".</p>
+<LayoutV2 title="404 — Lost at sea">
+  <main class="nf">
+    <div class="caustic c1"></div>
+    <div class="caustic c2"></div>
+    <div class="caustic c3"></div>
+
+    <div class="nf-inner">
+      <span class="eyebrow"><span class="pip"></span> Page not found</span>
+      <h1 class="nf-code">404</h1>
+      <p class="nf-line">This page drifted out with the tide.</p>
+      <p class="nf-sub">The current took it somewhere we can't follow — but the water back home is calm and waiting.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn-aqua">Back to shore <span class="arr">→</span></a>
+        <a href="/#waitlist" class="btn btn-ghost">Join the waitlist</a>
       </div>
+      <div class="nf-trust"><span class="dot"></span> Eddy · the gentle swim app</div>
     </div>
-  </Container>
-</Layout>
+  </main>
+</LayoutV2>
+
+<style>
+  .nf {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 40px 0;
+    background: linear-gradient(168deg, var(--ocean-1) 0%, var(--ocean-2) 54%, var(--ocean-3) 100%);
+    color: var(--on-ocean);
+  }
+  /* caustics use cove colours because <body data-hero="cove"> in LayoutV2 */
+  .nf .caustic { mix-blend-mode: screen; }
+
+  .nf-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 34px;
+    text-align: center;
+  }
+  .nf .eyebrow { color: var(--aqua); justify-content: center; }
+
+  .nf-code {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(6rem, 22vw, 13rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin: 14px 0 0;
+    color: #fff;
+    background: linear-gradient(180deg, #fff 0%, var(--aqua) 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 18px 50px rgba(48, 230, 248, 0.25));
+  }
+  .nf-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.4vw, 2.25rem);
+    line-height: 1.25;
+    color: var(--aqua);
+    margin: 6px 0 0;
+  }
+  .nf-sub {
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    line-height: 1.6;
+    color: var(--on-ocean-2);
+    margin: 18px auto 0;
+    max-width: 440px;
+  }
+  .nf-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+  .nf .btn-ghost {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.34);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .nf .btn-ghost:hover {
+    background: #fff;
+    color: var(--teal-dark);
+    border-color: #fff;
+  }
+  .nf-trust {
+    margin-top: 26px;
+    font-size: 13.5px;
+    color: var(--on-ocean-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .nf-trust .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 9px var(--green);
+  }
+</style>

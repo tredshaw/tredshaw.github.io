@@ -1,150 +1,40 @@
 ---
-// Hero.astro — v2 hero section
+// Hero.astro — v2 hero with toggleable dark/light background + inline Mailchimp capture
+import copy from "@data/copy.json";
+const { hero } = copy;
 ---
 
-<header class="hero">
+<header class="hero" id="top">
+  <div class="caustic c1"></div><div class="caustic c2"></div><div class="caustic c3"></div>
   <div class="wrap hero-grid">
-    <!-- Copy -->
-    <div class="hero-copy">
-      <span class="eyebrow">For anxious beginners</span>
-      <h1>Find your <span class="flow">flow.</span></h1>
-      <p class="sub">The intelligent swim app that removes the anxiety from swimming — calm design and gentle guidance, one swim at a time.</p>
-      <div class="hero-cta">
-        <a href="#email-capture" class="btn btn-primary">Start swimming calmly</a>
-        <a href="#app-preview" class="btn btn-ghost">See how it works →</a>
+    <div>
+      <span class="eyebrow" data-h="0"><span class="pip"></span> {hero.eyebrow}</span>
+      <h1 id="heroHeadline" data-h="1" set:html={hero.headlineA}></h1>
+      <p class="sub" id="heroSub" data-h="2">{hero.subA}</p>
+      <div class="capture" data-h="3">
+        <form id="heroForm" novalidate>
+          <input type="hidden" name="u" value="e030f7d989712f6a3a269d158" />
+          <input type="hidden" name="id" value="303ad0aa59" />
+          <input type="hidden" name="f_id" value="00a136e7f0" />
+          <input class="mc-hp" type="text" name="b_e030f7d989712f6a3a269d158_303ad0aa59" tabindex="-1" value="" aria-hidden="true" autocomplete="off" />
+          <input type="email" id="heroEmail" name="EMAIL" placeholder={hero.emailPlaceholder} aria-label="Email address" autocomplete="email" required />
+          <button type="submit" class="btn">{hero.cta} <span class="arr">→</span></button>
+        </form>
+        <p class="done" id="heroDone"></p>
       </div>
-      <p class="hero-note">Built on biomedical insight · Free to begin</p>
+      <div class="proof" data-h="4">
+        <div class="avatars" aria-hidden="true">
+          <span style="background:linear-gradient(135deg,#30E6F8,#105F80)"></span>
+          <span style="background:linear-gradient(135deg,#62EEFA,#23C2D2)"></span>
+          <span style="background:linear-gradient(135deg,#FF6B6B,#F3A38F)"></span>
+          <span style="background:linear-gradient(135deg,#105F80,#07425B)"></span>
+        </div>
+        <span>{hero.proof}</span>
+      </div>
+      <div class="hero-trust" data-h="4"><span class="dot"></span> {hero.trust}</div>
     </div>
-
-    <!-- Art -->
-    <div class="hero-art">
-      <div class="disc" aria-hidden="true"></div>
-      <img src="/hero_swimmer.png" alt="A single-line drawing of a calm swimmer" loading="eager" />
+    <div class="hero-art" data-h="5">
+      <img class="sw sw-open" src="/hero_swimmer.png" alt="Illustration of a calm swimmer" />
     </div>
   </div>
 </header>
-
-<style>
-  .hero {
-    position: relative;
-    padding: 56px 0 80px;
-    overflow: hidden;
-    background: #FAF6F0;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 65% 40%, rgba(48,230,248,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 40px;
-    align-items: center;
-    position: relative;
-  }
-  .eyebrow {
-    display: block;
-    font-family: 'Figtree', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #105F80;
-    margin-bottom: 16px;
-  }
-  h1 {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 700;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: #16201F;
-    margin: 0 0 0;
-  }
-  .flow {
-    color: #105F80;
-    font-style: italic;
-  }
-  .sub {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: #42585C;
-    margin: 22px 0 0;
-    max-width: 480px;
-  }
-  .hero-cta {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 32px;
-  }
-  .btn {
-    font-family: 'Figtree', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    border-radius: 9999px;
-    padding: 14px 28px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    transition: all 280ms cubic-bezier(.22,.61,.36,1);
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary {
-    background: #105F80;
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(16,95,128,0.22);
-  }
-  .btn-primary:hover {
-    background: #07425B;
-    box-shadow: 0 6px 20px rgba(16,95,128,0.3);
-  }
-  .btn-ghost {
-    background: transparent;
-    color: #42585C;
-    padding: 14px 4px;
-  }
-  .btn-ghost:hover { color: #105F80; }
-
-  .hero-note {
-    margin-top: 18px;
-    font-size: 13px;
-    color: #6B8085;
-  }
-
-  .hero-art {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .disc {
-    position: absolute;
-    inset: 8% 4%;
-    background: radial-gradient(circle at 50% 45%, rgba(48,230,248,0.18) 0%, transparent 68%);
-    border-radius: 50%;
-  }
-  .hero-art img {
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-    z-index: 1;
-  }
-
-  @media (max-width: 860px) {
-    .hero { padding: 40px 0 60px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-    .hero-art { order: -1; }
-    .hero-art img { max-width: 280px; }
-  }
-</style>

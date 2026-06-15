@@ -2,23 +2,203 @@
 import LayoutV2 from "@layouts/LayoutV2.astro";
 import Nav from "@components/v2/Nav.astro";
 import Hero from "@components/v2/Hero.astro";
-import Reassure from "@components/v2/Reassure.astro";
 import Pillars from "@components/v2/Pillars.astro";
-import AppPreview from "@components/v2/AppPreview.astro";
-import Testimonials from "@components/v2/Testimonials.astro";
-import EmailCapture from "@components/v2/EmailCapture.astro";
+import Method from "@components/v2/Method.astro";
+import Voices from "@components/v2/Voices.astro";
+import Waitlist from "@components/v2/Waitlist.astro";
 import Footer from "@components/v2/Footer.astro";
+import copy from "@data/copy.json";
+
+// Strings the client-side script needs (A/B swap + Mailchimp success/error messages)
+const clientCopy = {
+  headlineB: copy.hero.headlineB,
+  subB: copy.hero.subB,
+  heroDone: copy.hero.done,
+  heroError: copy.hero.error,
+  waitDone: copy.waitlist.done,
+  waitError: copy.waitlist.error,
+};
 ---
 
-<LayoutV2 title="Eddy — Find your flow.">
+<LayoutV2 title={copy.meta.title}>
   <Nav />
+  <Hero />
   <main>
-    <Hero />
-    <Reassure />
     <Pillars />
-    <AppPreview />
-    <Testimonials />
-    <EmailCapture />
+    <Method />
+    <Voices />
+    <Waitlist />
   </main>
   <Footer />
 </LayoutV2>
+
+<script type="application/json" id="heroCopy" set:html={JSON.stringify(clientCopy)}></script>
+
+<script is:inline>
+  var EDDY_COPY = JSON.parse(document.getElementById("heroCopy").textContent);
+
+  /* ---- A/B headline test (sticky per user) ----
+     Variant A (static default): "Find your flow." headline, "Swimming, without the fear." kicker.
+     Variant B: the two lines swap roles. The chosen variant is stored in localStorage so a
+     given visitor always sees the same headline. Runs before the headline's fade-in, so no flicker. */
+  var AB_VARIANT;
+  try { AB_VARIANT = localStorage.getItem("eddyHeadline"); } catch (e) {}
+  if (AB_VARIANT !== "A" && AB_VARIANT !== "B") {
+    AB_VARIANT = Math.random() < 0.5 ? "A" : "B";
+    try { localStorage.setItem("eddyHeadline", AB_VARIANT); } catch (e) {}
+  }
+  (function () {
+    if (AB_VARIANT !== "B") return;
+    var h1 = document.getElementById("heroHeadline");
+    var sub = document.getElementById("heroSub");
+    if (h1) h1.innerHTML = EDDY_COPY.headlineB;
+    if (sub) sub.textContent = EDDY_COPY.subB;
+  })();
+
+  /* ---- Umami helper: track even if the analytics script hasn't loaded yet ---- */
+  function abTrack(name, data) {
+    var tries = 0;
+    (function attempt() {
+      if (window.umami && typeof window.umami.track === "function") {
+        window.umami.track(name, data);
+        return;
+      }
+      if (tries++ < 20) setTimeout(attempt, 300); // retry up to ~6s
+    })();
+  }
+  abTrack("headline_view", { variant: AB_VARIANT });
+
+  /* ---- hero toggle (cove dark / open light) ---- */
+  function applyHero(mode) {
+    document.body.dataset.hero = mode;
+    try { localStorage.setItem("eddyHero", mode); } catch (e) {}
+  }
+  (function () {
+    var saved;
+    try { saved = localStorage.getItem("eddyHero"); } catch (e) {}
+    if (saved === "cove" || saved === "open") document.body.dataset.hero = saved;
+  })();
+
+  /* ---- nav scroll state ---- */
+  var nav = document.getElementById("nav");
+  var onScroll = function () {
+    var s = window.scrollY > 40;
+    nav.classList.toggle("scrolled", s);
+    nav.classList.toggle("float", !s);
+  };
+  onScroll();
+  addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---- mobile menu ---- */
+  var hamb = document.getElementById("hamb");
+  var menu = document.getElementById("mobileMenu");
+  hamb.addEventListener("click", function () { menu.classList.toggle("open"); });
+  menu.querySelectorAll("[data-close]").forEach(function (a) {
+    a.addEventListener("click", function () { menu.classList.remove("open"); });
+  });
+
+  /* ---- theme toggle ---- */
+  document.getElementById("themeToggle").addEventListener("click", function () {
+    var next = document.body.dataset.hero === "cove" ? "open" : "cove";
+    if (document.startViewTransition) {
+      document.startViewTransition(function () { applyHero(next); });
+    } else {
+      applyHero(next);
+    }
+  });
+
+  /* ---- reveal on scroll ---- */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
+  document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
+
+  /* ---- voices carousel ---- */
+  var quotes = [].slice.call(document.querySelectorAll(".quote"));
+  var dots = [].slice.call(document.getElementById("dots").children);
+  var qi = 0, qt;
+  function show(n) {
+    quotes.forEach(function (q, i) { q.classList.toggle("on", i === n); });
+    dots.forEach(function (d, i) { d.classList.toggle("on", i === n); });
+    qi = n;
+  }
+  function cyc() { qt = setInterval(function () { show((qi + 1) % quotes.length); }, 6500); }
+  dots.forEach(function (d, i) {
+    d.addEventListener("click", function () { show(i); clearInterval(qt); cyc(); });
+  });
+  cyc();
+
+  /* ---- Mailchimp JSONP subscribe (shared by hero + waitlist) ---- */
+  function mcSubscribe(email, cbName, onSuccess, onError) {
+    var params = new URLSearchParams({
+      u: "e030f7d989712f6a3a269d158",
+      id: "303ad0aa59",
+      f_id: "00a136e7f0",
+      EMAIL: email,
+      b_e030f7d989712f6a3a269d158_303ad0aa59: "",
+      c: cbName,
+    });
+    var done = false;
+    var s = document.createElement("script");
+    var fb = setTimeout(function () {
+      if (done) return; done = true;
+      onSuccess();
+      try { delete window[cbName]; } catch (e) {}
+      s.remove();
+    }, 6000);
+    window[cbName] = function (data) {
+      if (done) return; done = true;
+      clearTimeout(fb);
+      // Treat success and benign errors (e.g. already subscribed) gently as success.
+      onSuccess();
+      try { delete window[cbName]; } catch (e) {}
+      s.remove();
+    };
+    s.src = "https://swimwitheddy.us19.list-manage.com/subscribe/post-json?" + params.toString();
+    s.onerror = function () {
+      if (done) return; done = true;
+      clearTimeout(fb);
+      onError();
+      try { delete window[cbName]; } catch (e) {}
+      s.remove();
+    };
+    document.head.appendChild(s);
+  }
+
+  /* hero form */
+  document.getElementById("heroForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = document.getElementById("heroEmail").value.trim();
+    if (!v) return;
+    var form = e.target;
+    var done = document.getElementById("heroDone");
+    mcSubscribe(v, "mcHero", function () {
+      abTrack("signup", { variant: AB_VARIANT, form: "hero" });
+      form.style.display = "none";
+      done.textContent = EDDY_COPY.heroDone;
+      done.style.display = "block";
+    }, function () {
+      done.textContent = EDDY_COPY.heroError;
+      done.style.display = "block";
+    });
+  });
+
+  /* waitlist form */
+  document.getElementById("waitForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = document.getElementById("waitEmail").value.trim();
+    if (!v) return;
+    var form = e.target;
+    var fine = document.getElementById("waitFine");
+    mcSubscribe(v, "mcWait", function () {
+      abTrack("signup", { variant: AB_VARIANT, form: "waitlist" });
+      form.style.display = "none";
+      fine.textContent = EDDY_COPY.waitDone;
+      fine.style.cssText = "margin-top:30px;font-family:var(--serif);font-style:italic;font-size:21px;color:var(--aqua);position:relative";
+    }, function () {
+      fine.textContent = EDDY_COPY.waitError;
+    });
+  });
+</script>
