@@ -1,0 +1,135 @@
+/* ── V1 (original) ──────────────────────────────────────────────────── */
+[data-theme="v1"] {
+  --color-primary:        #105F80;
+  --color-primary-dark:   #07425B;
+  --color-secondary:      #30e6f8;
+  --color-secondary-dark: #23c2d2;
+  --color-accent:         #ff6b6b;
+  --color-base:           #F9FAFB;
+  --color-base-dark:      #E2E2E3;
+  --color-text:           #1F2937;
+  --font-heading: 'Inter Variable', Inter, sans-serif;
+  --font-body:    'Inter Variable', Inter, sans-serif;
+}
+
+/* ── V2: Newsreader / Inter ─────────────────────────────────────────── */
+[data-theme="v2"] {
+  --color-primary:        #0A4C66;
+  --color-primary-dark:   #08394D;
+  --color-secondary:      #00B6BE;
+  --color-secondary-dark: #009BA2;
+  --color-accent:         #E46E66;
+  --color-base:           #FAF7F2;
+  --color-base-dark:      #EEE9E0;
+  --color-text:           #1F2937;
+  --font-heading: 'Newsreader Variable', Georgia, serif;
+  --font-body:    'Inter Variable', Inter, sans-serif;
+}
+
+/* ── V3: Libre Baskerville / Plus Jakarta Sans ──────────────────────── */
+[data-theme="v3"] {
+  --color-primary:        #0A4C66;
+  --color-primary-dark:   #08394D;
+  --color-secondary:      #00BAA8;
+  --color-secondary-dark: #009E8F;
+  --color-accent:         #E07558;
+  --color-base:           #FAF7F2;
+  --color-base-dark:      #EEE9E0;
+  --color-text:           #1F2937;
+  --font-heading: 'Libre Baskerville', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans Variable', sans-serif;
+}
+
+/* ── V4: Libre Baskerville / Plus Jakarta Sans (alt palette) ────────── */
+[data-theme="v4"] {
+  --color-primary:        #0C5F70;
+  --color-primary-dark:   #094754;
+  --color-secondary:      #18C0B2;
+  --color-secondary-dark: #14A397;
+  --color-accent:         #EF6958;
+  --color-base:           #F7F4EF;
+  --color-base-dark:      #EDE9E2;
+  --color-text:           #1F2937;
+  --font-heading: 'Libre Baskerville', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans Variable', sans-serif;
+}
+
+/* ── V5: Newsreader hero / Bricolage Grotesque headings / Plus Jakarta Sans body ── */
+[data-theme="v5"] {
+  --color-primary:        #0A4C66;
+  --color-primary-dark:   #08394D;
+  --color-secondary:      #30e6f8;
+  --color-secondary-dark: #23c2d2;
+  --color-accent:         #ff6b6b;
+  --color-base:           #F7F4EF;
+  --color-base-dark:      #EDE9E2;
+  --color-text:           #1F2937;
+  --font-heading: 'Bricolage Grotesque Variable', sans-serif;
+  --font-body:    'Plus Jakarta Sans Variable', sans-serif;
+}
+
+[data-theme="v5"] .hero-heading {
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 500;
+}
+
+[data-theme="v5"] .hero-heading em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ── Global typography wiring ───────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6,
+.hero-heading {
+  font-family: var(--font-heading);
+}
+
+/* ── Eddy v2 Design System ──────────────────────────────────────────── */
+[data-theme="eddy-v2"] {
+  /* Backgrounds */
+  --color-base:           #FAF6F0;   /* page background — warm off-white */
+  --color-base-dark:      #F0EBE3;   /* subtle surface variant */
+  --color-surface:        #FFFDF9;   /* card / panel surface */
+
+  /* Brand teal */
+  --color-primary:        #105F80;   /* primary teal */
+  --color-primary-dark:   #07425B;   /* pressed state */
+
+  /* Accent palette (non-CTA use only for coral) */
+  --color-aqua:           #30E6F8;   /* aqua highlight / italic accent */
+  --color-coral:          #FF6B6B;   /* coral — decorative only, never primary CTA */
+  --color-green:          #00FFB1;   /* green accent */
+
+  /* Legacy aliases kept for Tailwind compatibility */
+  --color-secondary:      #30E6F8;
+  --color-secondary-dark: #23C2D2;
+  --color-accent:         #FF6B6B;
+
+  /* Foreground / ink */
+  --color-text:           #16201F;   /* ink — primary body text */
+  --color-fg-2:           #42585C;   /* secondary text */
+  --color-fg-3:           #6B8085;   /* tertiary / muted text */
+
+  /* Typography */
+  --font-heading: 'Source Serif 4', Georgia, serif;
+  --font-body:    'Figtree', system-ui, sans-serif;
+
+  /* Motion */
+  --ease-brand: cubic-bezier(.22, .61, .36, 1);
+  --duration-base: 300ms;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-pill: 9999px;
+}
+
+/* Aqua italic in hero heading */
+[data-theme="eddy-v2"] .hero-heading em {
+  color: var(--color-aqua);
+  font-style: italic;
+}

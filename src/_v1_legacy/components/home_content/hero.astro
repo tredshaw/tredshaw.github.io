@@ -1,0 +1,71 @@
+---
+import { Picture } from "astro:assets";
+import heroImage from "assets/hero.png";
+import Link from "@components/ui/link.astro";
+import Button from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import ContactForm from "@components/contactform.astro";
+
+---
+
+<main class="grid max-w-screen-xl px-5 mx-auto md:grid-cols-2 pt-8 pb-4 md:pt-12">
+
+  <!--Image-->
+
+  <!--Title-->
+
+  <!--Content-between spreads divs them vertically within this div-->
+  <div class="grid content-between">
+
+    <!-- STRAPLINE 1-->
+    <!--<h1-->
+    <!--  class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-primary">-->
+    <!--  Helping anxious swimmers train like <em>Olympians</em>.-->
+    <!--</h1>-->
+
+    <div class="">
+      <p
+        class="hero-heading text-5xl  lg:text-6xl xl:text-7xl font-bold text-white ">
+        Find your <em>flow</em>.
+      </p>
+
+      <p class="text-lg text-white max-w-xl mt-8">
+        The intelligent swim app for <span class="text-accent font-bold">anxious beginners.</span>
+        Aided by <span class=" font-bold">biomedical engineering expertise</span>.
+      </p>
+    </div>
+
+    <!--justify-center aligns items horizontally in the div-->
+    <div class="flex align-middle justify-center px-8 py-12">
+      <!--Including tredshaw.github.io and public so images show in dev and build
+      use src/(image name) for just local build
+      use /(image name) for just public build-->
+      <img class=" max-h-44" src="/hero_swimmer_white.png" alt="image description">
+    </div>
+  </div>
+
+  <div class="grid content-center pt-16 md:py-4 md:px-16">
+    <div class="pb-4 ">
+      <h3
+          class="text-2xl lg:text-3xl xl:text-4xl font-bold text-white">
+        Start swimming calmly
+      </h3>
+      <p class="text-lg mt-4 mb-4 lg:mb-6 text-white max-w-xl">
+        Join us today to help change the world of swimming and create the app that you want!
+      </p>
+    </div>
+    <div class="">
+      <ContactForm
+          accessKey="ca23b04a-ad55-47be-a692-0b34076fd6d7"/>
+    </div>
+    <!--<Picture-->
+    <!--  src={heroImage}-->
+    <!--  alt="Astronaut in the air"-->
+    <!--  widths={[200, 400, 600]}-->
+    <!--  sizes="(max-width: 800px) 100vw, 620px"-->
+    <!--  loading="eager"-->
+    <!--  format="avif"-->
+    <!--/>-->
+  </div>
+
+</main>
