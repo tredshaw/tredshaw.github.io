@@ -34,7 +34,7 @@ const copyWriter = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://tredshaw.github.io",
+  site: "https://swimwitheddy.com",
   base: "/",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
   build: {
