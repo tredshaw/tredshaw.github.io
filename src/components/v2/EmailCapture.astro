@@ -1,0 +1,120 @@
+---
+// EmailCapture.astro — v2 email capture section with Mailchimp JSONP
+---
+
+<section
+  id="email-capture"
+  class="py-16 sm:py-24"
+  style="background: linear-gradient(135deg, #105F80 0%, #07425B 100%);"
+>
+  <div class="max-w-xl mx-auto px-4 sm:px-6 text-center">
+    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-white mb-4">
+      Ready to find your flow?
+    </h2>
+    <p class="text-white/80 text-lg mb-8">
+      Join the calm. Be the first to swim with Eddy when we open the next group.
+    </p>
+
+    <form
+      id="mc-embedded-subscribe-form"
+      action="https://swimwitheddy.us19.list-manage.com/subscribe/post-json"
+      method="GET"
+      novalidate
+      class="flex flex-col sm:flex-row gap-3"
+    >
+      <!-- Required hidden fields -->
+      <input type="hidden" name="u" value="e030f7d989712f6a3a269d158" />
+      <input type="hidden" name="id" value="303ad0aa59" />
+      <input type="hidden" name="f_id" value="00a136e7f0" />
+      <input type="hidden" name="c" id="mc-jsonp-callback" value="mailchimpCallback" />
+
+      <!-- Email input -->
+      <input
+        type="email"
+        name="EMAIL"
+        id="mc-email"
+        required
+        placeholder="your@email.com"
+        class="flex-1 px-4 py-3 rounded-pill text-text bg-white placeholder-fg3 focus:outline-none focus:ring-2 focus:ring-aqua text-base"
+      />
+
+      <!-- Bot honeypot — must be visually hidden -->
+      <input
+        type="text"
+        name="b_e030f7d989712f6a3a269d158_303ad0aa59"
+        tabindex="-1"
+        value=""
+        style="position:absolute; left:-5000px;"
+        aria-hidden="true"
+      />
+
+      <button
+        type="submit"
+        class="px-6 py-3 rounded-pill bg-aqua text-primary font-semibold text-base hover:bg-aqua/90 transition-colors ease-brand duration-300 whitespace-nowrap"
+      >
+        Join the waitlist
+      </button>
+    </form>
+
+    <div id="mc-success" hidden class="mt-6 text-white font-medium text-lg">
+      You're in — we'll be in touch, calmly.
+    </div>
+    <div id="mc-error" hidden class="mt-6 text-coral font-medium text-base">
+      Something went wrong. Please try again.
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = e.target;
+    var email = document.getElementById('mc-email').value;
+    if (!email) return;
+
+    var params = new URLSearchParams({
+      u: 'e030f7d989712f6a3a269d158',
+      id: '303ad0aa59',
+      f_id: '00a136e7f0',
+      EMAIL: email,
+      b_e030f7d989712f6a3a269d158_303ad0aa59: '',
+      c: 'mailchimpCallback',
+    });
+
+    window.mailchimpCallback = function (data) {
+      try {
+        var success = data.result === 'success';
+        document.getElementById('mc-success').hidden = !success;
+        document.getElementById('mc-error').hidden = success;
+        if (success) form.hidden = true;
+      } catch (err) {
+        document.getElementById('mc-error').hidden = false;
+      }
+      delete window.mailchimpCallback;
+    };
+
+    var script = document.createElement('script');
+    script.src = 'https://swimwitheddy.us19.list-manage.com/subscribe/post-json?' + params.toString();
+
+    // Timeout fallback — if callback never fires show a generic message
+    var timeout = setTimeout(function () {
+      if (window.mailchimpCallback) {
+        var successEl = document.getElementById('mc-success');
+        successEl.hidden = false;
+        successEl.textContent = 'Request sent — check your inbox shortly.';
+        delete window.mailchimpCallback;
+        script.remove();
+      }
+    }, 5000);
+
+    script.onload = function () { script.remove(); };
+    script.onerror = function () {
+      clearTimeout(timeout);
+      document.getElementById('mc-error').hidden = false;
+      delete window.mailchimpCallback;
+      script.remove();
+    };
+
+    document.head.appendChild(script);
+  });
+</script>

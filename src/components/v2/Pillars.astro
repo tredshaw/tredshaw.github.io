@@ -1,0 +1,57 @@
+---
+// Pillars.astro — v2 four pillars section
+const pillars = [
+  {
+    title: "Less anxiety",
+    description: "Sessions designed to dissolve fear, not ignore it — at a pace that feels safe.",
+    icon: "/anxiety_icon.png",
+    iconAlt: "Anxiety icon",
+  },
+  {
+    title: "Real support",
+    description: "Coaching and a calm community. You are never alone in the lane.",
+    icon: "/support_icon.png",
+    iconAlt: "Support icon",
+  },
+  {
+    title: "Steady progress",
+    description: "Tiny, trackable steps that quietly build real confidence in the water.",
+    icon: "/progress_icon.png",
+    iconAlt: "Progress icon",
+  },
+  {
+    title: "Quiet joy",
+    description: "The goal isn't laps. It's the feeling of floating — free and at ease.",
+    icon: "/joy_icon.png",
+    iconAlt: "Joy icon",
+  },
+];
+---
+
+<section id="pillars" class="bg-base-dark py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-fg2 mb-4">
+        How Eddy helps
+      </p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold text-text">
+        Four ways the water gets gentler.
+      </h2>
+    </div>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
+      {pillars.map((pillar) => (
+        <li
+          class="bg-surface rounded-card p-6 flex flex-col items-start gap-4 transition-transform duration-300 ease-brand hover:-translate-y-1 hover:shadow-lg"
+        >
+          <img
+            src={pillar.icon}
+            alt={pillar.iconAlt}
+            class="h-12 w-12 object-contain"
+          />
+          <h3 class="font-display text-xl font-semibold text-text">{pillar.title}</h3>
+          <p class="text-fg2 text-sm leading-relaxed">{pillar.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

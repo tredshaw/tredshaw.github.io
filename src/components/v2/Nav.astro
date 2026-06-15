@@ -1,0 +1,100 @@
+---
+// Nav.astro — v2 navigation
+---
+
+<nav id="v2-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+    <!-- Brand -->
+    <a href="/" class="flex items-center gap-2 text-white font-semibold text-lg">
+      <img src="/logo.png" alt="Eddy spiral mark" class="h-8 w-8 object-contain" />
+      <span class="font-display">Eddy</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-6 text-white/90 text-sm font-medium">
+      <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
+      <li><a href="#pillars" class="hover:text-white transition-colors">Pillars</a></li>
+      <li><a href="#app-preview" class="hover:text-white transition-colors">The app</a></li>
+      <li><a href="#testimonials" class="hover:text-white transition-colors">Stories</a></li>
+    </ul>
+
+    <!-- CTA + mobile toggle -->
+    <div class="flex items-center gap-3">
+      <a
+        href="#email-capture"
+        class="hidden md:inline-flex items-center px-4 py-2 rounded-pill bg-white text-primary font-semibold text-sm hover:bg-white/90 transition-colors"
+      >
+        Start swimming calmly
+      </a>
+      <!-- Hamburger -->
+      <button
+        id="v2-nav-toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        class="md:hidden text-white p-1"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="v2-mobile-menu"
+    class="hidden md:hidden bg-primary/95 backdrop-blur-sm border-t border-white/10"
+  >
+    <ul class="flex flex-col px-4 py-4 gap-4 text-white text-base font-medium">
+      <li><a href="/about/" class="block hover:text-aqua transition-colors">About</a></li>
+      <li><a href="#pillars" class="block hover:text-aqua transition-colors">Pillars</a></li>
+      <li><a href="#app-preview" class="block hover:text-aqua transition-colors">The app</a></li>
+      <li><a href="#testimonials" class="block hover:text-aqua transition-colors">Stories</a></li>
+      <li>
+        <a
+          href="#email-capture"
+          class="inline-flex items-center px-4 py-2 rounded-pill bg-white text-primary font-semibold text-sm"
+        >
+          Start swimming calmly
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById('v2-nav');
+    const toggle = document.getElementById('v2-nav-toggle');
+    const menu = document.getElementById('v2-mobile-menu');
+
+    // Scroll behaviour
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+        nav.style.backgroundColor = 'rgba(16, 95, 128, 0.85)';
+        nav.style.backdropFilter = 'blur(12px)';
+      } else {
+        nav.classList.remove('scrolled');
+        nav.style.backgroundColor = '';
+        nav.style.backdropFilter = '';
+      }
+    }, { passive: true });
+
+    // Mobile toggle
+    toggle.addEventListener('click', function () {
+      const isOpen = menu.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close mobile menu on anchor link click
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>

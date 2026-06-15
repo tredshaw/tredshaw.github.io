@@ -1,0 +1,51 @@
+---
+// Hero.astro — v2 hero section
+---
+
+<section class="relative bg-primary min-h-screen flex items-center overflow-hidden pt-16">
+  <!-- Aqua disc glow behind swimmer -->
+  <div
+    aria-hidden="true"
+    class="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full"
+    style="background: radial-gradient(circle, rgba(48,230,248,0.25) 0%, rgba(48,230,248,0) 70%);"
+  ></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-16">
+    <!-- Copy -->
+    <div class="text-white">
+      <p class="text-sm font-semibold uppercase tracking-widest text-aqua mb-4">
+        For anxious beginners
+      </p>
+      <h1 class="hero-heading font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-tight mb-6">
+        Find your <em>flow.</em>
+      </h1>
+      <p class="text-white/80 text-lg sm:text-xl leading-relaxed max-w-md mb-8">
+        The intelligent swim app that removes the anxiety from swimming — calm design and gentle guidance, one swim at a time.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="#email-capture"
+          class="inline-flex justify-center items-center px-6 py-3 rounded-pill bg-aqua text-primary font-semibold text-base hover:bg-aqua/90 transition-colors ease-brand duration-300"
+        >
+          Start swimming calmly
+        </a>
+        <a
+          href="#app-preview"
+          class="inline-flex justify-center items-center px-6 py-3 text-white/80 font-medium text-base hover:text-white transition-colors"
+        >
+          See how it works →
+        </a>
+      </div>
+    </div>
+
+    <!-- Swimmer image -->
+    <div class="relative flex justify-center md:justify-end">
+      <img
+        src="/hero_swimmer_white.png"
+        alt="Swimmer in calm water"
+        class="relative z-10 max-h-[480px] object-contain drop-shadow-2xl"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>

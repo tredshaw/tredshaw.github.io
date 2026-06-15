@@ -1,0 +1,103 @@
+---
+// Testimonials.astro — v2 testimonials carousel
+const testimonials = [
+  {
+    quote: "I hadn't put my face in the water for thirty years. Eddy got me there in three weeks — calmly.",
+    name: "Priya",
+    detail: "Learned to swim at 41",
+  },
+  {
+    quote: "It never once made me feel silly for being scared. That's why it worked.",
+    name: "Marcus",
+    detail: "Open-water beginner",
+  },
+  {
+    quote: "The confidence tracker is the first time I've seen my own progress. I cried, a little.",
+    name: "Janette",
+    detail: "Returning swimmer",
+  },
+];
+---
+
+<section id="testimonials" class="bg-primary py-16 sm:py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-aqua mb-4">
+      What our swimmers say
+    </p>
+    <h2 class="font-display text-3xl sm:text-4xl font-semibold text-white mb-12">
+      Quietly life-changing.
+    </h2>
+
+    <!-- Testimonial slides -->
+    <div id="testimonials-track" class="relative min-h-[200px]">
+      {testimonials.map((t, i) => (
+        <div
+          class="testimonial-slide"
+          data-index={i}
+          aria-hidden={i !== 0 ? "true" : "false"}
+        >
+          <blockquote class="text-white/90 text-xl sm:text-2xl font-display italic leading-relaxed mb-6">
+            "{t.quote}"
+          </blockquote>
+          <p class="text-aqua font-semibold">{t.name}</p>
+          <p class="text-white/60 text-sm mt-1">{t.detail}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Dot navigation -->
+    <div class="flex justify-center gap-3 mt-10" role="tablist" aria-label="Testimonial navigation">
+      {testimonials.map((_, i) => (
+        <button
+          class="testimonial-dot h-2.5 w-2.5 rounded-full bg-white/30 transition-colors duration-300"
+          data-target={i}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+          aria-label={`Testimonial ${i + 1}`}
+        ></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Without JS, all slides are visible (stacked). JS hides all but the active one. */
+  .testimonial-slide {
+    display: block;
+  }
+  .testimonial-slide.is-hidden {
+    display: none;
+  }
+  .testimonial-dot.is-active {
+    background-color: #30E6F8; /* --color-aqua */
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    if (!slides.length) return;
+
+    function goTo(index) {
+      slides.forEach(function (slide, i) {
+        const active = i === index;
+        slide.classList.toggle('is-hidden', !active);
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === index);
+        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+    }
+
+    // Initialise — hide all but first
+    goTo(0);
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(parseInt(dot.dataset.target, 10));
+      });
+    });
+  })();
+</script>

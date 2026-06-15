@@ -1,0 +1,65 @@
+---
+// Footer.astro — v2 footer
+const year = new Date().getFullYear();
+
+const links = {
+  Product: [
+    { label: "Features", href: "#pillars" },
+    { label: "The app", href: "#app-preview" },
+    { label: "For coaches", href: "#" },
+  ],
+  Company: [
+    { label: "About", href: "/about/" },
+    { label: "Our method", href: "#" },
+    { label: "Contact", href: "/contact/" },
+  ],
+  Support: [
+    { label: "Help centre", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Terms", href: "#" },
+  ],
+};
+---
+
+<footer class="bg-primary-dark text-white py-12 sm:py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-4">
+          <img src="/logo.png" alt="Eddy spiral mark" class="h-8 w-8 object-contain" />
+          <span class="font-display font-semibold text-lg">Eddy</span>
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed max-w-xs">
+          The intelligent swim app for anxious beginners. From panic to peace, one swim at a time.
+        </p>
+      </div>
+
+      <!-- Link columns -->
+      {Object.entries(links).map(([heading, items]) => (
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">
+            {heading}
+          </h3>
+          <ul class="flex flex-col gap-2">
+            {items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-white/70 text-sm hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-white/10 pt-6 text-white/40 text-xs text-center sm:text-left">
+      &copy; {year} Eddy &middot; London, United Kingdom &middot; swimwitheddy@gmail.com
+    </div>
+  </div>
+</footer>
