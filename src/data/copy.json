@@ -36,31 +36,31 @@
   },
   "pillars": {
     "eyebrow": "What Eddy is built on",
-    "heading": "Four feelings, one <span class=\"it\">gentle</span> current.",
-    "intro": "Every part of Eddy is shaped around the emotional journey of learning to swim as an adult — from the fear that holds you back to the joy that carries you forward.",
+    "heading": "Four feelings, one <span class=\"it\">gentle</span> push.",
+    "intro": "Every part of Eddy is shaped around the emotional journey of learning to swim as an adult — from the fear that holds you back to the joy that keeps you going.",
     "items": [
       {
         "title": "Anxiety",
-        "copy": "We acknowledge the fear first, then design to gently dissolve it."
+        "copy": "We acknowledge your fears first, and then design a plan to overcome it."
       },
       {
         "title": "Support",
-        "copy": "Coaching and community in equal measure. Never alone in the lane."
+        "copy": "Coaching and community so that you never feel alone in your lane."
       },
       {
         "title": "Progress",
-        "copy": "Tiny, trackable steps that quietly build into real confidence."
+        "copy": "Small, trackable steps and achievements that quietly build into confidence."
       },
       {
         "title": "Joy",
-        "copy": "The goal was never laps. It's the feeling of floating — calm and free."
+        "copy": "The goal was to be confident, but you come away wanting to swim more."
       }
     ]
   },
   "method": {
     "eyebrow": "The method",
     "heading": "Calm by design. Backed by <span class=\"it\">science</span>.",
-    "intro": "Eddy was built by a biomedical engineer who understands the mechanics of water — and the very human fear of being in it. The belief behind it is simple: swimming should feel like freedom, not fear.",
+    "intro": "Eddy was built by a biomedical engineer who understands the mechanics of water. The belief behind Eddy is simple: swimming should feel like freedom, not fear.",
     "steps": [
       {
         "n": "01",
@@ -70,12 +70,12 @@
       {
         "n": "02",
         "title": "Biomedical insight",
-        "copy": "Sessions grounded in biomechanics and National level experience, so each step is gentle on your nerves, kind to your body, and grounded in understanding."
+        "copy": "Sessions grounded in over a decade of National level experience and biomechanics, so each step is gentle, kind to your body, and grounded in understanding."
       },
       {
         "n": "03",
         "title": "Gentle AI guidance",
-        "copy": "An attentive companion that will adapt to how you feel each day, nudging you forward only as fast as you're ready."
+        "copy": "Your attentive companion, Eddy, who will adapt to how you feel each day, nudging you forward only as fast as you're ready."
       }
     ]
   },
