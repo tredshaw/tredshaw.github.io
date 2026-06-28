@@ -280,13 +280,19 @@
   @media (max-width:940px){
     .nav-links{display:none}.nav-cta .btn-nav{display:none}.hamb{display:block}
     .hero-grid{grid-template-columns:1fr;gap:14px}
-    .hero-art{order:-1}
+    .hero-art{order:-1;overflow:hidden}
+    .hero-art::before,.hero-art::after{display:none}
     .pillars{grid-template-columns:1fr 1fr}
     .method-grid{grid-template-columns:1fr;gap:0}
     .mstep{padding-top:30px;border-top:1px solid var(--hair)}
     .mstep:first-child{border-top:none;padding-top:0}
   }
-  @media (max-width:560px){ .wrap{padding:0 22px} .pillars{grid-template-columns:1fr} }
+  @media (max-width:560px){
+    .wrap{padding:0 22px}
+    .pillars{grid-template-columns:1fr}
+    .capture form{flex-direction:column;gap:6px}
+    .capture .btn{width:100%;justify-content:center}
+  }
   @media (prefers-reduced-motion:reduce){
     .caustic,.hero-art .sw,.hero [data-h]{animation:none!important}
     [data-reveal]{transition:none!important;opacity:1!important;transform:none!important}
